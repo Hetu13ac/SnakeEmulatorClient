@@ -14,14 +14,14 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 
-public class CreateGame extends JPanel
+public class JoinGame extends JPanel
 {
     private JLabel lblCreateGame;
     private JLabel lblGameName;
     private JTextField textFieldGameName;
     private JLabel lblEnterGameControls;
     private JTextField textFieldGameControls;
-    private JButton btnCreateGame;
+    private JButton btnJoinGame;
 
     private String gameName;
     private String gameControls;
@@ -30,7 +30,7 @@ public class CreateGame extends JPanel
     /**
      * Create the panel.
      */
-    public CreateGame()
+    public JoinGame()
     {
         setSize(648, 445);
         setLayout(null);
@@ -47,9 +47,9 @@ public class CreateGame extends JPanel
         instructions.setIcon(new ImageIcon(img));
         add(instructions);
 
-        lblCreateGame = new JLabel("Create Game");
+        lblCreateGame = new JLabel("Join Game");
         lblCreateGame.setFont(new Font("Lucida Grande", Font.BOLD | Font.ITALIC, 35));
-        lblCreateGame.setBounds(107, 38, 242, 44);
+        lblCreateGame.setBounds(124, 38, 194, 44);
         add(lblCreateGame);
 
         lblGameName = new JLabel("Enter Game Name:");
@@ -74,10 +74,10 @@ public class CreateGame extends JPanel
         textFieldGameControls.setBounds(221, 270, 189, 28);
         add(textFieldGameControls);
 
-        btnCreateGame = new JButton("Create Game");
-        btnCreateGame.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
-        btnCreateGame.setBounds(162, 307, 156, 37);
-        add(btnCreateGame);
+        btnJoinGame = new JButton("Join Game");
+        btnJoinGame.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
+        btnJoinGame.setBounds(162, 307, 156, 37);
+        add(btnJoinGame);
 
         btnBack = new JButton("Back");
         btnBack.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
@@ -87,7 +87,7 @@ public class CreateGame extends JPanel
 
     public JButton getBtnCreateGame()
     {
-        return btnCreateGame;
+        return btnJoinGame;
     }
 
     public JButton getBtnBack()
@@ -115,8 +115,7 @@ public class CreateGame extends JPanel
 
     public void addActionListener(ActionListener l)
     {
-        btnCreateGame.addActionListener(l);
+        btnJoinGame.addActionListener(l);
         btnBack.addActionListener(l);
     }
 }
-
