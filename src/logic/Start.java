@@ -8,16 +8,29 @@ package logic;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import com.google.gson.Gson;
 import gui.Screen;
+import sdk.Api;
+import sdk.ServerConnection;
+import sdk.User;
 
 public class Start
 {
     private Screen screen;
+    private User currentUser;
+    private ServerConnection sc;
+    private Api api;
+
 
     public Start()
     {
         screen = new Screen();
         screen.setVisible(true);
+
+        currentUser = new User();
+
+        sc = new ServerConnection();
+        api = new Api();
     }
 
     public void run(){
@@ -38,7 +51,7 @@ public class Start
         {
             if(e.getSource() == screen.getWelcome().getBtnLogin())
             {
-                screen.show(Screen.MENU);
+                userAuth();
             }
             if(e.getSource() == screen.getWelcome().getBtnSignUp())
             {
@@ -46,6 +59,44 @@ public class Start
             }
 
         }
+    }
+
+    public boolean userAuth()
+    {
+        String username = screen.getWelcome().getUsername();
+        String password = screen.getWelcome().getPassword();
+
+        if (!username.equals("") && !password.equals(""))
+        {
+            currentUser.setPassword(password);
+            currentUser.setUsername(username);
+
+            String json = new Gson().toJson(currentUser);
+
+            String message = sc.stringMessageParser(sc.post(json, "login/"));
+            System.out.println(message);
+
+            if (message.equals("Login successful"))
+            {
+                for (User user : api.getUsers() )
+                {
+                    if (user.getUsername().equals(screen.getWelcome().getUsername()))
+                    {
+                        currentUser = user;
+                    }
+                }
+
+                screen.show(Screen.MENU);
+                screen.getWelcome().clearTextFields();
+
+                return true;
+            }
+            else if (message.equals("Wrong username or password") || message.equals("Error in JSON"))
+            {
+
+            }
+        }
+        return false;
     }
 
     private class SignUpActionListener implements ActionListener
