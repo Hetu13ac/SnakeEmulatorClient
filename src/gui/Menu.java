@@ -20,6 +20,8 @@ public class Menu extends JPanel
     private JButton btnHighscores;
     private JButton btnDeleteGame;
     private JButton btnLogOff;
+    private JLabel lblUsername;
+    private JLabel lblUserID;
 
     /**
      * Create the panel.
@@ -66,6 +68,16 @@ public class Menu extends JPanel
         btnLogOff.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
         btnLogOff.setBounds(53, 267, 196, 37);
         add(btnLogOff);
+
+        lblUsername = new JLabel("");
+        lblUsername.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
+        lblUsername.setBounds(284, 38, 328, 28);
+        add(lblUsername);
+
+        lblUserID = new JLabel("");
+        lblUserID.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
+        lblUserID.setBounds(354, 66, 196, 28);
+        add(lblUserID);
     }
 
     public JButton getBtnCreateGame()
@@ -91,6 +103,12 @@ public class Menu extends JPanel
     public JButton getBtnLogOff()
     {
         return btnLogOff;
+    }
+
+    public void informations(String username, int userID)
+    {
+        lblUsername.setText("You are logged in as: " + username);
+        lblUserID.setText("Your User ID: " + userID);
     }
 
     public void addActionListener(ActionListener l)

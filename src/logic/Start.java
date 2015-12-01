@@ -86,6 +86,7 @@ public class Start
                     }
                 }
                 screen.show(Screen.MENU);
+                showInfo();
                 screen.getWelcome().clearTextFields();
                 screen.getWelcome().getYouHaveEntered().setVisible(false);
 
@@ -102,6 +103,11 @@ public class Start
             screen.getWelcome().getYouHaveEntered().setVisible(true);
 
         return false;
+    }
+
+    public void showInfo()
+    {
+        screen.getMenu().informations(currentUser.getUsername(), currentUser.getId());
     }
 
     private class SignUpActionListener implements ActionListener
@@ -308,11 +314,36 @@ public class Start
         @Override
         public void actionPerformed(ActionEvent e)
         {
+            if(e.getSource() == screen.getDeleteGame().getBtnDeleteGame())
+            {
+                System.out.println(api.getGames(currentUser.getId()));
+                //deleteGame();
+            }
             if(e.getSource() == screen.getDeleteGame().getBtnBack())
             {
                 screen.show(Screen.MENU);
             }
         }
     }
+
+    /*public String deleteGame()
+    {
+        int gameID = screen.getDeleteGame().getGameID();
+
+        Game game = new Game();
+        game.setGameId(gameID);
+
+        for (Game g : api.getGames(currentUser.getId()))
+        {
+            if (g.getGameId() == screen.getDeleteGame().getGameID())
+            {
+                game.setGameId(g.getGameId());
+                game = g;
+            }
+        }
+
+        return api.deleteGame(game, game.getGameId());
+    }*/
+
 }
 

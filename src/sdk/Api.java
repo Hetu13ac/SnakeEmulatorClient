@@ -83,9 +83,9 @@ public class Api {
 
     //-------------------------------------------------------------------------------------------
 
-    public ArrayList<Game> getGames()
+    public ArrayList<Game> getGames(int userID)
     {
-        String jsonData = sc.get("games/");
+        String jsonData = sc.get("games/" + userID +"/");
 
         ArrayList<Game> Games = new Gson().fromJson(jsonData, new TypeToken<ArrayList<Game>>() {
         }.getType());
@@ -93,10 +93,9 @@ public class Api {
         return Games;
     }
 
-
-    public String deleteGame(Game game)
+    public String deleteGame(Game game, int gameID)
     {
-        String jsonData = sc.put(new Gson().toJson(game), "games/{gameid}/");
+        String jsonData = sc.delete(new Gson().toJson(game), "/games/" + gameID + "/");
 
         return sc.stringMessageParser(jsonData);
     }

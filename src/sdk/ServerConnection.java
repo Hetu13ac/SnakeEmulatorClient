@@ -89,8 +89,11 @@ public class ServerConnection {
         {
             return response.getEntity(String.class);
         }
+
         return "";
     }
+
+
 
     public String stringMessageParser(String json)
     {
