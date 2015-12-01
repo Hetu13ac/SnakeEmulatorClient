@@ -10,9 +10,7 @@ import java.awt.event.ActionListener;
 
 import com.google.gson.Gson;
 import gui.Screen;
-import sdk.Api;
-import sdk.ServerConnection;
-import sdk.User;
+import sdk.*;
 
 public class Start
 {
@@ -200,11 +198,48 @@ public class Start
         @Override
         public void actionPerformed(ActionEvent e)
         {
+            if(e.getSource() == screen.getCreateGame().getBtnCreateGame())
+            {
+                createGame();
+            }
             if(e.getSource() == screen.getCreateGame().getBtnBack())
             {
                 screen.show(Screen.MENU);
+                screen.getCreateGame().clearTextFields();
             }
         }
+    }
+
+    public String createGame()
+    {
+        if(!screen.getCreateGame().getGameName().equals("") && !screen.getCreateGame().getGameControls().equals(""))
+        {
+            Gamer host = new Gamer();
+            host.setId(currentUser.getId());
+            host.setControls(screen.getCreateGame().getGameControls());
+
+            Game game = new Game();
+            game.setName(screen.getCreateGame().getGameName());
+            game.setHost(host);
+            game.setMapSize(15);
+
+            String messageFromCreateApi =api.createGame(game);
+
+            for (Game g : api.getOpenGames() )
+            {
+                if(g.getName().equals(screen.getCreateGame().getGameName()))
+                {
+                    game.setGameId(g.getGameId());
+                }
+            }
+            screen.getCreateGame().successMessage(game.getGameId());
+
+            return messageFromCreateApi;
+        }
+        else
+            screen.getCreateGame().somethingWentWrong();
+
+        return "";
     }
 
     private class JoinGameActionListener implements ActionListener
@@ -212,11 +247,43 @@ public class Start
         @Override
         public void actionPerformed(ActionEvent e)
         {
+            if(e.getSource() == screen.getJoinGame().getBtnJoinGame())
+            {
+                joinGame();
+            }
             if(e.getSource() == screen.getJoinGame().getBtnBack())
             {
                 screen.show(Screen.MENU);
             }
         }
+    }
+
+    public String joinGame()
+    {
+        if(!screen.getJoinGame().getGameName().equals("") && !screen.getJoinGame().getGameControls().equals(""))
+        {
+            Gamer opponent = new Gamer();
+            Game game = new Game();
+            game.setOpponent(opponent);
+
+            opponent.setControls(screen.getJoinGame().getGameControls());
+            //System.out.print(game.getOpponent().getControls());
+            opponent.setId(currentUser.getId());
+
+            for (Game g : api.getOpenGames())
+            {
+                if (g.getName().equals(screen.getJoinGame().getGameName()))
+                    game.setGameId(g.getGameId());
+            }
+
+            String messageFromJoin = api.joinGame(game);
+            api.startGame(game);
+
+            screen.getJoinGame().gameJoined(game.getGameId());
+
+            return messageFromJoin;
+        }
+        return "";
     }
 
     private class HighscoresActionListener implements ActionListener

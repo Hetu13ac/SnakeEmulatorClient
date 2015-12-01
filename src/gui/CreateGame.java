@@ -21,10 +21,11 @@ public class CreateGame extends JPanel
     private JLabel lblEnterGameControls;
     private JTextField textFieldGameControls;
     private JButton btnCreateGame;
+    private JButton btnBack;
+    private JLabel lblMessage;
 
     private String gameName;
     private String gameControls;
-    private JButton btnBack;
 
     /**
      * Create the panel.
@@ -42,8 +43,8 @@ public class CreateGame extends JPanel
         add(snakeIcon);
 
         JLabel instructions = new JLabel("");
-        instructions.setBounds(105, 128, 231, 133);
-        Image img = new ImageIcon(this.getClass().getResource("/img/instructions.png")).getImage();
+        instructions.setBounds(198, 128, 212, 133);
+        Image img = new ImageIcon(this.getClass().getResource("/img/controlHENRIK.png")).getImage();
         instructions.setIcon(new ImageIcon(img));
         add(instructions);
 
@@ -83,6 +84,10 @@ public class CreateGame extends JPanel
         btnBack.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
         btnBack.setBounds(16, 366, 84, 37);
         add(btnBack);
+
+        lblMessage = new JLabel("");
+        lblMessage.setFont(new Font("Lucida Grande", Font.PLAIN, 15));
+        add(lblMessage);
     }
 
     public JButton getBtnCreateGame()
@@ -111,6 +116,22 @@ public class CreateGame extends JPanel
     {
         textFieldGameName.setText("");
         textFieldGameControls.setText("");
+        lblMessage.setVisible(false);
+    }
+
+    public void successMessage(int gameID)
+    {
+        lblMessage.setText("Game was created. Game ID: "+ gameID);
+        lblMessage.setForeground(Color.BLUE);
+        lblMessage.setBounds(107, 346, 281, 22);
+    }
+
+    public void somethingWentWrong()
+    {
+        lblMessage.setText("Something went wrong");
+        lblMessage.setForeground(Color.RED);
+        lblMessage.setBounds(154, 346, 176, 22);
+        lblMessage.setVisible(true);
     }
 
     public void addActionListener(ActionListener l)

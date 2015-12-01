@@ -15,16 +15,18 @@ import javax.swing.JButton;
 
 public class JoinGame extends JPanel
 {
-    private JLabel lblCreateGame;
+    private JLabel lblJoinGame;
     private JLabel lblGameName;
     private JTextField textFieldGameName;
     private JLabel lblEnterGameControls;
     private JTextField textFieldGameControls;
     private JButton btnJoinGame;
+    private JLabel lblMessage;
+    private JButton btnBack;
 
     private String gameName;
     private String gameControls;
-    private JButton btnBack;
+
 
     /**
      * Create the panel.
@@ -42,15 +44,15 @@ public class JoinGame extends JPanel
         add(snakeIcon);
 
         JLabel instructions = new JLabel("");
-        instructions.setBounds(105, 128, 231, 133);
-        Image img = new ImageIcon(this.getClass().getResource("/img/instructions.png")).getImage();
+        instructions.setBounds(198, 128, 212, 133);
+        Image img = new ImageIcon(this.getClass().getResource("/img/controlHENRIK.png")).getImage();
         instructions.setIcon(new ImageIcon(img));
         add(instructions);
 
-        lblCreateGame = new JLabel("Join Game");
-        lblCreateGame.setFont(new Font("Lucida Grande", Font.BOLD | Font.ITALIC, 35));
-        lblCreateGame.setBounds(124, 38, 194, 44);
-        add(lblCreateGame);
+        lblJoinGame = new JLabel("Join Game");
+        lblJoinGame.setFont(new Font("Lucida Grande", Font.BOLD | Font.ITALIC, 35));
+        lblJoinGame.setBounds(124, 38, 194, 44);
+        add(lblJoinGame);
 
         lblGameName = new JLabel("Enter Game Name:");
         lblGameName.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
@@ -83,9 +85,13 @@ public class JoinGame extends JPanel
         btnBack.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
         btnBack.setBounds(16, 366, 84, 37);
         add(btnBack);
+
+        lblMessage = new JLabel("");
+        lblMessage.setFont(new Font("Lucida Grande", Font.PLAIN, 15));
+        add(lblMessage);
     }
 
-    public JButton getBtnCreateGame()
+    public JButton getBtnJoinGame()
     {
         return btnJoinGame;
     }
@@ -111,6 +117,14 @@ public class JoinGame extends JPanel
     {
         textFieldGameName.setText("");
         textFieldGameControls.setText("");
+    }
+
+    public void gameJoined(int gameID)
+    {
+        lblMessage.setText("Game was joined. Game ID: " + gameID);
+        lblMessage.setForeground(Color.BLUE);
+        lblMessage.setBounds(123, 345, 242, 22);
+        lblMessage.setVisible(false);
     }
 
     public void addActionListener(ActionListener l)
