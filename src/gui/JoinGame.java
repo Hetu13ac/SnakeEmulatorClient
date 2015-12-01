@@ -117,6 +117,7 @@ public class JoinGame extends JPanel
     {
         textFieldGameName.setText("");
         textFieldGameControls.setText("");
+        lblMessage.setVisible(false);
     }
 
     public void gameJoined(int gameID)
@@ -124,7 +125,15 @@ public class JoinGame extends JPanel
         lblMessage.setText("Game was joined. Game ID: " + gameID);
         lblMessage.setForeground(Color.BLUE);
         lblMessage.setBounds(123, 345, 242, 22);
-        lblMessage.setVisible(false);
+        lblMessage.setVisible(true);
+    }
+
+    public void somethingWentWrong()
+    {
+        lblMessage.setText("Something went wrong");
+        lblMessage.setForeground(Color.RED);
+        lblMessage.setBounds(157, 345, 176, 22);
+        lblMessage.setVisible(true);
     }
 
     public void addActionListener(ActionListener l)

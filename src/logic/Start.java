@@ -254,6 +254,7 @@ public class Start
             if(e.getSource() == screen.getJoinGame().getBtnBack())
             {
                 screen.show(Screen.MENU);
+                screen.getJoinGame().clearTextFields();
             }
         }
     }
@@ -283,6 +284,9 @@ public class Start
 
             return messageFromJoin;
         }
+
+        screen.getJoinGame().somethingWentWrong();
+
         return "";
     }
 
