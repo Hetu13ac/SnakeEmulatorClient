@@ -5,8 +5,7 @@ package gui;
  */
 
 
-import java.awt.Font;
-import java.awt.Image;
+import java.awt.*;
 import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
@@ -28,6 +27,7 @@ public class Highscores extends JPanel
      */
     public Highscores()
     {
+        setBackground(Color.YELLOW);
         setSize(648, 445);
         setLayout(null);
 

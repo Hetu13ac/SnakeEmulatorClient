@@ -117,6 +117,7 @@ public class Start
             if(e.getSource() == screen.getSignUp().getBtnBack())
             {
                 screen.show(Screen.WELCOME);
+                screen.getSignUp().clearTextFields();
             }
         }
     }
@@ -147,16 +148,20 @@ public class Start
 
             if (message.equals("User was created"))
             {
+                screen.getSignUp().successfulSignUp();
                 return true;
             }
             else if (message.equals("Username or email already exists"))
             {
-
-            } else if (message.equals("Error in JSON"))
+                screen.getSignUp().alreadyExist();
+            }
+            else if (message.equals("Error in JSON"))
             {
-
+                screen.getSignUp().somethingWentWrong();
             }
         }
+        else
+            screen.getSignUp().missingInformation();
 
         return false;
     }

@@ -5,8 +5,7 @@ package gui;
  */
 
 
-import java.awt.Font;
-import java.awt.Image;
+import java.awt.*;
 import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
@@ -31,6 +30,7 @@ public class SignUp extends JPanel
     private JTextField textFieldEmail;
     private JButton btnSignUp;
     private JButton btnBack;
+    private JLabel lblMessage;
 
     private String firstName;
     private String lastName;
@@ -44,6 +44,7 @@ public class SignUp extends JPanel
 
     public SignUp()
     {
+        setBackground(Color.YELLOW);
         setSize(648, 445);
         setLayout(null);
 
@@ -127,6 +128,10 @@ public class SignUp extends JPanel
         btnBack.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
         btnBack.setBounds(16, 367, 98, 36);
         add(btnBack);
+
+        lblMessage = new JLabel("");
+        lblMessage.setFont(new Font("Lucida Grande", Font.PLAIN, 15));
+        add(lblMessage);
     }
 
     public JButton getBtnSignUp()
@@ -176,6 +181,38 @@ public class SignUp extends JPanel
         textFieldUsername.setText("");
         textFieldPassword.setText("");
         textFieldEmail.setText("");
+        lblMessage.setVisible(false);
+    }
+
+    public void successfulSignUp()
+    {
+        lblMessage.setText("Sign up was Successful. Click \"Back\" to login");
+        lblMessage.setForeground(Color.BLUE);
+        lblMessage.setBounds(16, 333, 325, 22);
+    }
+
+    public void alreadyExist()
+    {
+        lblMessage.setText("Username or E-mail already exist");
+        lblMessage.setForeground(Color.RED);
+        lblMessage.setBounds(92, 333, 249, 22);
+        lblMessage.setVisible(true);
+    }
+
+    public void somethingWentWrong()
+    {
+        lblMessage.setText("Something went wrong");
+        lblMessage.setForeground(Color.RED);
+        lblMessage.setBounds(175, 333, 166, 22);
+        lblMessage.setVisible(true);
+    }
+
+    public void missingInformation()
+    {
+        lblMessage.setText("Please fill in your informations");
+        lblMessage.setForeground(Color.RED);
+        lblMessage.setBounds(115, 333, 226, 22);
+        lblMessage.setVisible(true);
     }
 
     public void addActionListener(ActionListener l)

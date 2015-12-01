@@ -39,6 +39,7 @@ public class Welcome extends JPanel
      */
     public Welcome()
     {
+        setBackground(Color.YELLOW);
         setSize(648, 445);
         setLayout(null);
 

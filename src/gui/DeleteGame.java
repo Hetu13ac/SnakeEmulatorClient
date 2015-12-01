@@ -5,7 +5,7 @@ package gui;
  */
 
 
-import java.awt.Image;
+import java.awt.*;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -18,6 +18,7 @@ public class DeleteGame extends JPanel
      */
     public DeleteGame()
     {
+        setBackground(Color.YELLOW);
         setSize(648, 445);
         setLayout(null);
 

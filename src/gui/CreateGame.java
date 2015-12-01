@@ -4,8 +4,7 @@ package gui;
  * Created by HenrikTuyen on 30/11/15.
  */
 
-import java.awt.Font;
-import java.awt.Image;
+import java.awt.*;
 import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
@@ -32,6 +31,7 @@ public class CreateGame extends JPanel
      */
     public CreateGame()
     {
+        setBackground(Color.YELLOW);
         setSize(648, 445);
         setLayout(null);
 

@@ -5,10 +5,7 @@ package gui;
  */
 
 
-import java.awt.BorderLayout;
-import java.awt.CardLayout;
-import java.awt.EventQueue;
-import java.awt.Image;
+import java.awt.*;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -43,7 +40,7 @@ public class Screen extends JFrame
 
     public Screen()
     {
-
+        setBackground(new Color(204, 204, 255));
         setResizable(false);
         setBounds(100, 100, 648, 445);
         contentPane = new JPanel();
