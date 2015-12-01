@@ -38,6 +38,7 @@ public class Start
         screen.createGame.addActionListener(new CreateGameActionListener());
         screen.joinGame.addActionListener(new JoinGameActionListener());
         screen.highscores.addActionListener(new HighscoresActionListener());
+        screen.deleteGame.addActionListener(new DeleteGameActionListener());
 
         screen.show(screen.WELCOME);
     }
@@ -307,7 +308,10 @@ public class Start
         @Override
         public void actionPerformed(ActionEvent e)
         {
-
+            if(e.getSource() == screen.getDeleteGame().getBtnBack())
+            {
+                screen.show(Screen.MENU);
+            }
         }
     }
 }

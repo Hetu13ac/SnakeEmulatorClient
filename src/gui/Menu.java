@@ -66,7 +66,6 @@ public class Menu extends JPanel
         btnLogOff.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
         btnLogOff.setBounds(53, 267, 196, 37);
         add(btnLogOff);
-
     }
 
     public JButton getBtnCreateGame()

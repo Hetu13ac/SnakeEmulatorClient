@@ -82,10 +82,23 @@ public class Api {
     }
 
     //-------------------------------------------------------------------------------------------
-    public String login(User user)
+
+    public ArrayList<Game> getGames()
     {
-        String jsonData = sc.post(new Gson().toJson(user), "login/");
+        String jsonData = sc.get("games/");
+
+        ArrayList<Game> Games = new Gson().fromJson(jsonData, new TypeToken<ArrayList<Game>>() {
+        }.getType());
+
+        return Games;
+    }
+
+
+    public String deleteGame(Game game)
+    {
+        String jsonData = sc.put(new Gson().toJson(game), "games/{gameid}/");
 
         return sc.stringMessageParser(jsonData);
     }
+
 }

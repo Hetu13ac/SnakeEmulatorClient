@@ -78,6 +78,20 @@ public class ServerConnection {
         return "";
     }
 
+    public String delete(String json, String path)
+    {
+        Client client = Client.create();
+
+        WebResource webResource = client.resource(getHostAddress() + ":" + getPort() + "/api/" + path);
+        ClientResponse response = webResource.type("application/json").delete(ClientResponse.class, json);
+
+        if (response != null)
+        {
+            return response.getEntity(String.class);
+        }
+        return "";
+    }
+
     public String stringMessageParser(String json)
     {
         JSONParser jsonParser = new JSONParser();
