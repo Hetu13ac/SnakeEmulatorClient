@@ -60,67 +60,67 @@ public class SignUp extends JPanel
 
         lblPleaseFillIn = new JLabel("Please fill in your details down below:");
         lblPleaseFillIn.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
-        lblPleaseFillIn.setBounds(27, 100, 333, 22);
+        lblPleaseFillIn.setBounds(27, 86, 333, 22);
         add(lblPleaseFillIn);
 
         lblFirstName = new JLabel("First Name:");
         lblFirstName.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
-        lblFirstName.setBounds(27, 134, 109, 22);
+        lblFirstName.setBounds(27, 120, 109, 22);
         add(lblFirstName);
 
         lblLastName = new JLabel("Last Name:");
         lblLastName.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
-        lblLastName.setBounds(27, 170, 98, 22);
+        lblLastName.setBounds(27, 156, 98, 22);
         add(lblLastName);
 
         lblEmail = new JLabel("E-mail:");
         lblEmail.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
-        lblEmail.setBounds(27, 274, 87, 22);
+        lblEmail.setBounds(27, 260, 87, 22);
         add(lblEmail);
 
         lblUsername = new JLabel("Username:");
         lblUsername.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
-        lblUsername.setBounds(27, 204, 98, 22);
+        lblUsername.setBounds(27, 190, 98, 22);
         add(lblUsername);
 
         lblPassword = new JLabel("Password:");
         lblPassword.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
-        lblPassword.setBounds(27, 238, 87, 22);
+        lblPassword.setBounds(27, 224, 87, 22);
         add(lblPassword);
 
         textFieldFirstName = new JTextField();
         textFieldFirstName.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
-        textFieldFirstName.setBounds(129, 134, 212, 28);
+        textFieldFirstName.setBounds(129, 120, 212, 28);
         add(textFieldFirstName);
         textFieldFirstName.setColumns(10);
 
         textFieldLastName = new JTextField();
         textFieldLastName.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
         textFieldLastName.setColumns(10);
-        textFieldLastName.setBounds(129, 168, 212, 28);
+        textFieldLastName.setBounds(129, 154, 212, 28);
         add(textFieldLastName);
 
         textFieldUsername = new JTextField();
         textFieldUsername.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
         textFieldUsername.setColumns(10);
-        textFieldUsername.setBounds(129, 201, 212, 28);
+        textFieldUsername.setBounds(129, 187, 212, 28);
         add(textFieldUsername);
 
         textFieldPassword = new JTextField();
         textFieldPassword.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
         textFieldPassword.setColumns(10);
-        textFieldPassword.setBounds(129, 235, 212, 28);
+        textFieldPassword.setBounds(129, 221, 212, 28);
         add(textFieldPassword);
 
         textFieldEmail = new JTextField();
         textFieldEmail.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
         textFieldEmail.setColumns(10);
-        textFieldEmail.setBounds(129, 272, 212, 28);
+        textFieldEmail.setBounds(129, 258, 212, 28);
         add(textFieldEmail);
 
         btnSignUp = new JButton("Sign Up");
         btnSignUp.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
-        btnSignUp.setBounds(201, 312, 140, 36);
+        btnSignUp.setBounds(201, 288, 140, 36);
         add(btnSignUp);
 
         btnBack = new JButton("Back");

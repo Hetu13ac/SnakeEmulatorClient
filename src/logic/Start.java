@@ -56,8 +56,9 @@ public class Start
             if(e.getSource() == screen.getWelcome().getBtnSignUp())
             {
                 screen.show(Screen.SIGNUP);
+                screen.getWelcome().getYouHaveEntered().setVisible(false);
+                screen.getWelcome().clearTextFields();
             }
-
         }
     }
 
@@ -85,17 +86,22 @@ public class Start
                         currentUser = user;
                     }
                 }
-
                 screen.show(Screen.MENU);
                 screen.getWelcome().clearTextFields();
+                screen.getWelcome().getYouHaveEntered().setVisible(false);
 
                 return true;
             }
             else if (message.equals("Wrong username or password") || message.equals("Error in JSON"))
             {
-
+                screen.getWelcome().enteredWrong();
+                screen.getWelcome().getYouHaveEntered().setVisible(true);
             }
         }
+        else
+            screen.getWelcome().somethingWentWrong();
+            screen.getWelcome().getYouHaveEntered().setVisible(true);
+
         return false;
     }
 
@@ -104,11 +110,55 @@ public class Start
         @Override
         public void actionPerformed(ActionEvent e)
         {
+            if(e.getSource() == screen.getSignUp().getBtnSignUp())
+            {
+                createUser();
+            }
             if(e.getSource() == screen.getSignUp().getBtnBack())
             {
                 screen.show(Screen.WELCOME);
             }
         }
+    }
+
+    public boolean createUser()
+    {
+        String firstName = screen.getSignUp().getFirstName();
+        String lastName = screen.getSignUp().getLastName();
+        String username = screen.getSignUp().getUsername();
+        String password = screen.getSignUp().getPassword();
+        String email = screen.getSignUp().getEmail();
+        int type = 1;
+
+        if(!firstName.equals("") && !lastName.equals("") && !username.equals("") && !password.equals("") && !email.equals(""))
+        {
+            User user = new User();
+            user.setFirstName(firstName);
+            user.setLastName(lastName);
+            user.setUsername(username);
+            user.setPassword(password);
+            user.setEmail(email);
+            user.setType(type);
+
+            String json = new Gson().toJson(user);
+
+            String message = sc.stringMessageParser(sc.post(json, "users/"));
+            System.out.println(message);
+
+            if (message.equals("User was created"))
+            {
+                return true;
+            }
+            else if (message.equals("Username or email already exists"))
+            {
+
+            } else if (message.equals("Error in JSON"))
+            {
+
+            }
+        }
+
+        return false;
     }
 
     private class MenuActionListener implements ActionListener

@@ -5,13 +5,12 @@ package gui;
  */
 
 
-import java.awt.Image;
+import java.awt.*;
 
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 
-import java.awt.Font;
 import java.awt.event.ActionListener;
 
 import javax.swing.JTextField;
@@ -30,6 +29,7 @@ public class Welcome extends JPanel
     private JButton btnLogin;
     private JLabel lblDontHaveA;
     private JButton btnSignUp;
+    private JLabel lblYouHaveEntered;
 
     private String username;
     private String password;
@@ -88,6 +88,10 @@ public class Welcome extends JPanel
         btnSignUp.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
         btnSignUp.setBounds(243, 332, 164, 36);
         add(btnSignUp);
+
+        lblYouHaveEntered = new JLabel("");
+        lblYouHaveEntered.setFont(new Font("Lucida Grande", Font.PLAIN, 15));
+        add(lblYouHaveEntered);
     }
 
     public JButton getBtnLogin()
@@ -116,6 +120,25 @@ public class Welcome extends JPanel
     {
         textFieldUsername.setText("");
         passwordField.setText("");
+    }
+
+    public JLabel getYouHaveEntered()
+    {
+        return lblYouHaveEntered;
+    }
+
+    public void enteredWrong()
+    {
+        lblYouHaveEntered.setText("You have entered wrong username or password");
+        lblYouHaveEntered.setForeground(Color.RED);
+        lblYouHaveEntered.setBounds(57, 296, 343, 24);
+    }
+
+    public void somethingWentWrong()
+    {
+        lblYouHaveEntered.setText("Please enter username and password");
+        lblYouHaveEntered.setForeground(Color.RED);
+        lblYouHaveEntered.setBounds(125, 296, 275, 24);
     }
 
     public void addActionListener(ActionListener l)
