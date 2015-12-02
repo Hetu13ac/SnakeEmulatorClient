@@ -42,7 +42,6 @@ public class Highscores extends JPanel
         lblHighscores.setBounds(113, 62, 202, 44);
         add(lblHighscores);
 
-
         table = new JTable();
         scrollPane = new JScrollPane(table);
         scrollPane.setBounds(18, 118, 382, 226);

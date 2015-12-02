@@ -23,21 +23,13 @@ import java.util.ArrayList;
  * Created by HenrikTuyen on 19/11/15.
  */
 
-public class Api {
-
+public class Api
+{
     private ServerConnection sc;
 
-    public Api() {
+    public Api()
+    {
         sc = new ServerConnection();
-    }
-
-    public ArrayList<Score> getHighscores() {
-        String jsonData = sc.get("scores/");
-
-        ArrayList<Score> scores = new Gson().fromJson(jsonData, new TypeToken<ArrayList<Score>>() {
-        }.getType());
-
-        return scores;
     }
 
     public ArrayList<User> getUsers() {
@@ -56,9 +48,6 @@ public class Api {
 
         return sc.stringMessageParser(jsonData);
     }
-
-
-    //--------------------------------------------------------------------------------------------------------------
 
     public String joinGame(Game game)
     {
@@ -85,32 +74,6 @@ public class Api {
         return openGames;
     }
 
-    //--------------------------------------------------------------------------------------------------------------
-
-    public String deleteGame(int gameID)
-    {
-        String jsonData = sc.delete("games/" + gameID + "/");
-
-        return sc.stringMessageParser(jsonData);
-    }
-
-    /*
-    @GET //"GET-request"
-    @Path("/game/{gameid}")
-    @Produces("application/json")
-    public String getGame(@PathParam("gameid") int gameid) {
-
-        Game game = Logic.getGame(gameid);
-        return new Gson().toJson(game);
-    }*/
-
-    /*public  String getGameByID(int gameID)
-    {
-        String jsonData = sc.get("game/" + gameID + "/");
-
-        return sc.stringMessageParser(jsonData);
-    }*/
-
     public Game getGameByGameID(int gameID)
     {
         String jsonData = sc.get("game/" + gameID + "/");
@@ -120,65 +83,27 @@ public class Api {
         return game;
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    //Se bort fra det her-------------------------------------------------------------------------------------------
-
-    /*public ArrayList<Game> getGamesByUserID(int userID)
+    public String deleteGame(int gameID)
     {
-        String jsonData = sc.get("games/" + userID +"/");
-
-        ArrayList<Game> Games = new Gson().fromJson(jsonData, new TypeToken<ArrayList<Game>>() {
-        }.getType());
-
-        return Games;
-    }
-
-    public String deleteGame(Game game, int gameID)
-    {
-        String jsonData = sc.delete(new Gson().toJson(game), "game/" + gameID + "/");
+        String jsonData = sc.delete("games/" + gameID + "/");
 
         return sc.stringMessageParser(jsonData);
     }
 
-    //-------------------------------------------------------------------------------------------
 
-    public ArrayList<Game> getGamesByGameID(int gameID)
+
+
+//----------------------------------------------------------------------------------------------------
+
+    public ArrayList<Score> getHighscores()
     {
-        String jsonData = sc.get("games/" + gameID +"/");
+        String jsonData = sc.get("highscores/");
 
-        ArrayList<Game> Games = new Gson().fromJson(jsonData, new TypeToken<ArrayList<Game>>() {
+        ArrayList<Score> scores = new Gson().fromJson(jsonData, new TypeToken<ArrayList<Score>>() {
         }.getType());
 
-        return Games;
+        return scores;
     }
-
-    /*public String getGameByGameID(int gameID)
-    {
-        String jsonData = sc.get("game/" + gameID + "/");
-
-        return sc.stringMessageParser(jsonData);
-    }*/
-
-
 
 
 }

@@ -4,20 +4,14 @@ package logic;
  * Created by HenrikTuyen on 30/11/15.
  */
 
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.FileInputStream;
-import java.io.IOException;
+
 import java.util.ArrayList;
 
 import com.google.gson.Gson;
 import gui.Screen;
 import sdk.*;
-import sun.audio.AudioData;
-import sun.audio.AudioPlayer;
-import sun.audio.AudioStream;
-import sun.audio.ContinuousAudioDataStream;
 
 import javax.swing.table.AbstractTableModel;
 
@@ -116,7 +110,8 @@ public class Start
         return false;
     }
 
-    public void showInfo() {
+    public void showInfo()
+    {
         screen.getMenu().information(currentUser.getUsername(), currentUser.getId());
     }
 
@@ -330,6 +325,7 @@ public class Start
             {
                 screen.show(Screen.MENU);
                 screen.getShowResult().resetInfo();
+                screen.getShowResult().getLblSomethingWentWrong().setVisible(false);
             }
         }
     }
@@ -342,9 +338,10 @@ public class Start
             Game game = api.getGameByGameID(gameID);
 
             screen.getShowResult().seeResultFromGame(game.getName(), game.getHost().getId(), game.getOpponent().getId(), game.getWinner().getId());
+            screen.getShowResult().getLblSomethingWentWrong().setVisible(false);
         }
         else
-            System.out.println("Lav en tekstbesked med fejlbesked");
+            screen.getShowResult().getLblSomethingWentWrong().setVisible(true);
 
         return "";
     }
@@ -367,7 +364,7 @@ public class Start
         private static final long serialVersionUID = 1L;
 
         private ArrayList<Score> highscores;
-        private String[] columns = {"Game ID", "Score", "Opponent ID"};
+        private String[] columns = {"Game ID", "Score", "Username"};
         private int numberOfRows;
 
         public HighscoreTableModel(ArrayList<Score> highscores)
@@ -403,11 +400,11 @@ public class Start
             switch (columnIndex) {
 
                 case 0:
-                    return highscores.get(rowIndex).getGame().getGameId();
+                    return highscores.get(rowIndex).getGame().getWinner().getUsername();
                 case 1:
-                    return highscores.get(rowIndex).getScore() ;
+                    return highscores.get(rowIndex).getScore();
                 case 2:
-                    return highscores.get(rowIndex).getOpponent().getId();
+                    return highscores.get(rowIndex).getGame().getGameId();
 
             }
 

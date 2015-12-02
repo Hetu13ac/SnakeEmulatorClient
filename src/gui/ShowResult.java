@@ -93,11 +93,10 @@ public class ShowResult extends JPanel
 
         lblSomethingWentWrong = new JLabel("Something went wrong");
         lblSomethingWentWrong.setForeground(Color.RED);
-        lblSomethingWentWrong.setFont(new Font("Lucida Grande", Font.PLAIN, 15));
-        lblSomethingWentWrong.setBounds(220, 203, 174, 22);
+        lblSomethingWentWrong.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
+        lblSomethingWentWrong.setBounds(157, 203, 237, 22);
         add(lblSomethingWentWrong);
         lblSomethingWentWrong.setVisible(false);
-
     }
 
     public JButton getBtnGetResult()
@@ -114,7 +113,7 @@ public class ShowResult extends JPanel
     {
         return lblSomethingWentWrong;
     }
-    
+
     public String getGameID()
     {
         gameID = textFieldGameID.getText();
