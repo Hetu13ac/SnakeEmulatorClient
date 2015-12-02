@@ -411,12 +411,20 @@ public class Start
         @Override
         public void actionPerformed(ActionEvent e)
         {
-            if(e.getSource() == screen.getDeleteGame().getBtnDeleteGame()) {
-                deleteGame();
-            }
-            if(e.getSource() == screen.getDeleteGame().getBtnBack())
+            try
             {
-                screen.show(Screen.MENU);
+                if(e.getSource() == screen.getDeleteGame().getBtnDeleteGame())
+                {
+                    deleteGame();
+                }
+                if(e.getSource() == screen.getDeleteGame().getBtnBack())
+                {
+                    screen.show(Screen.MENU);
+                    screen.getDeleteGame().clearText();
+                }
+            } catch(Exception e1)
+            {
+                screen.getDeleteGame().somethingWentWrong();
             }
         }
     }
@@ -425,14 +433,24 @@ public class Start
     {
         int gameID = screen.getDeleteGame().getGameID();
 
-        api.deleteGame(gameID);
+        String message = api.deleteGame(gameID);
 
-        return "";
+        System.out.println(message);
+        if (message.equals("Game was deleted"))
+        {
+            screen.getDeleteGame().gameWasDeleted(gameID);
+        }
+        if (message.equals("Failed. Game was not deleted")) {
+            screen.getDeleteGame().failed();
+        }
+
+        return message;
     }
 
 
 
-
+//Game was deleted
+    // Failed. Game was not deleted
 
 
 

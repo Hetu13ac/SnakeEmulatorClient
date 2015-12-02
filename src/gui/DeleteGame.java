@@ -20,6 +20,7 @@ public class DeleteGame extends JPanel {
     private JTextField textFieldGameID;
     private JButton btnDeleteGame;
     private JButton btnBack;
+    private JLabel lblMessage;
 
     private int gameID;
 
@@ -64,6 +65,10 @@ public class DeleteGame extends JPanel {
         btnBack.setBounds(33, 366, 84, 37);
         add(btnBack);
 
+        lblMessage = new JLabel("");
+        lblMessage.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
+        add(lblMessage);
+
     }
 
     public JButton getBtnDeleteGame()
@@ -76,11 +81,46 @@ public class DeleteGame extends JPanel {
         return btnBack;
     }
 
+    public JTextField getTextFieldGameID()
+    {
+        return textFieldGameID;
+    }
+
     public int getGameID()
     {
         String g = textFieldGameID.getText();
         gameID = Integer.parseInt(g);
         return gameID;
+    }
+
+    public void gameWasDeleted(int gameID)
+    {
+        lblMessage.setText("Game was deleted. (Game ID: " + gameID + ")");
+        lblMessage.setForeground(Color.BLUE);
+        lblMessage.setBounds(41, 239, 327, 28);
+        lblMessage.setVisible(true);
+    }
+
+    public void failed()
+    {
+        lblMessage.setText("Failed. Game was not deleted");
+        lblMessage.setForeground(Color.RED);
+        lblMessage.setBounds(82, 239, 262, 28);
+        lblMessage.setVisible(true);
+    }
+
+    public void somethingWentWrong()
+    {
+        lblMessage.setText("Something went wrong. Please try again.");
+        lblMessage.setForeground(Color.RED);
+        lblMessage.setBounds(41, 239, 367, 28);
+        lblMessage.setVisible(true);
+    }
+
+    public void clearText()
+    {
+        textFieldGameID.setText("");
+        lblMessage.setVisible(false);
     }
 
     public void addActionListener(ActionListener l)
