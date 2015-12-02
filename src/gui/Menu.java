@@ -17,6 +17,7 @@ public class Menu extends JPanel
     private JLabel lblMenu;
     private JButton btnCreateGame;
     private JButton btnJoinGame;
+    private JButton btnShowResult;
     private JButton btnHighscores;
     private JButton btnDeleteGame;
     private JButton btnLogOff;
@@ -56,17 +57,17 @@ public class Menu extends JPanel
 
         btnHighscores = new JButton("Highscores");
         btnHighscores.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
-        btnHighscores.setBounds(53, 178, 196, 37);
+        btnHighscores.setBounds(53, 216, 196, 37);
         add(btnHighscores);
 
         btnDeleteGame = new JButton("Delete Game");
         btnDeleteGame.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
-        btnDeleteGame.setBounds(53, 218, 196, 37);
+        btnDeleteGame.setBounds(53, 256, 196, 37);
         add(btnDeleteGame);
 
         btnLogOff = new JButton("Log Off");
         btnLogOff.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
-        btnLogOff.setBounds(53, 267, 196, 37);
+        btnLogOff.setBounds(53, 305, 196, 37);
         add(btnLogOff);
 
         lblUsername = new JLabel("");
@@ -78,6 +79,13 @@ public class Menu extends JPanel
         lblUserID.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
         lblUserID.setBounds(354, 66, 196, 28);
         add(lblUserID);
+
+        btnShowResult = new JButton("Show Result");
+        btnShowResult.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
+        btnShowResult.setBounds(53, 178, 196, 37);
+        add(btnShowResult);
+
+
     }
 
     public JButton getBtnCreateGame()
@@ -88,6 +96,11 @@ public class Menu extends JPanel
     public JButton getBtnJoinGame()
     {
         return btnJoinGame;
+    }
+
+    public JButton getBtnShowResult()
+    {
+        return btnShowResult;
     }
 
     public JButton getBtnHighscores()
@@ -105,7 +118,7 @@ public class Menu extends JPanel
         return btnLogOff;
     }
 
-    public void informations(String username, int userID)
+    public void information(String username, int userID)
     {
         lblUsername.setText("You are logged in as: " + username);
         lblUserID.setText("Your User ID: " + userID);
@@ -115,6 +128,7 @@ public class Menu extends JPanel
     {
         btnCreateGame.addActionListener(l);
         btnJoinGame.addActionListener(l);
+        btnShowResult.addActionListener(l);
         btnHighscores.addActionListener(l);
         btnDeleteGame.addActionListener(l);
         btnLogOff.addActionListener(l);

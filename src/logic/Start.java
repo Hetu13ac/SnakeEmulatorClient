@@ -7,10 +7,13 @@ package logic;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import com.google.gson.Gson;
 import gui.Screen;
 import sdk.*;
+
+import javax.swing.table.AbstractTableModel;
 
 public class Start
 {
@@ -37,6 +40,7 @@ public class Start
         screen.menu.addActionListener(new MenuActionListener());
         screen.createGame.addActionListener(new CreateGameActionListener());
         screen.joinGame.addActionListener(new JoinGameActionListener());
+        screen.showResult.addActionListener(new ShowResultActionListener());
         screen.highscores.addActionListener(new HighscoresActionListener());
         screen.deleteGame.addActionListener(new DeleteGameActionListener());
 
@@ -105,9 +109,8 @@ public class Start
         return false;
     }
 
-    public void showInfo()
-    {
-        screen.getMenu().informations(currentUser.getUsername(), currentUser.getId());
+    public void showInfo() {
+        screen.getMenu().information(currentUser.getUsername(), currentUser.getId());
     }
 
     private class SignUpActionListener implements ActionListener
@@ -184,8 +187,18 @@ public class Start
             {
                 screen.show(Screen.JOINGAME);
             }
+            if(e.getSource() == screen.getMenu().getBtnShowResult())
+            {
+                screen.show(Screen.SHOWRESULT);
+            }
             if(e.getSource() == screen.getMenu().getBtnHighscores())
             {
+                ArrayList<Score> scores = api.getHighscores();
+                HighscoreTableModel tableModel = new HighscoreTableModel(scores);
+                screen.show(Screen.HIGHSCORES);
+                screen.getHighscores().getTable().setModel(tableModel);
+
+                sc.get("scores");
                 screen.show(Screen.HIGHSCORES);
             }
             if(e.getSource() == screen.getMenu().getBtnDeleteGame())
@@ -275,13 +288,13 @@ public class Start
             game.setOpponent(opponent);
 
             opponent.setControls(screen.getJoinGame().getGameControls());
-            //System.out.print(game.getOpponent().getControls());
             opponent.setId(currentUser.getId());
 
             for (Game g : api.getOpenGames())
             {
                 if (g.getName().equals(screen.getJoinGame().getGameName()))
                     game.setGameId(g.getGameId());
+
             }
 
             String messageFromJoin = api.joinGame(game);
@@ -297,6 +310,32 @@ public class Start
         return "";
     }
 
+    private class ShowResultActionListener implements ActionListener
+    {
+        @Override
+        public void actionPerformed(ActionEvent e)
+        {
+            if(e.getSource() == screen.getShowResult().getBtnGetResult())
+            {
+                //showResultByGameID();
+            }
+            if(e.getSource() == screen.getShowResult().getBtnBack())
+            {
+                screen.show(Screen.MENU);
+            }
+        }
+    }
+
+    /*public String showResultByGameID()
+    {
+
+        String fromJsonToGson = api.getGameByGameID(screen.getShowResult().getGameID());
+        System.out.print(fromJsonToGson);
+
+        return fromJsonToGson;
+    }*/
+
+
     private class HighscoresActionListener implements ActionListener
     {
         @Override
@@ -309,15 +348,71 @@ public class Start
         }
     }
 
+    public class HighscoreTableModel extends AbstractTableModel
+    {
+        private static final long serialVersionUID = 1L;
+
+        private ArrayList<Score> highscores;
+        private String[] columns = {"Game ID", "Score", "Opponent ID"};
+        private int numberOfRows;
+
+        public HighscoreTableModel(ArrayList<Score> highscores)
+        {
+            this.highscores = highscores;
+            fireTableStructureChanged();
+        }
+
+        @Override
+        public int getColumnCount() {
+            return columns.length;
+        }
+
+        @Override
+        public Class<?> getColumnClass(int columnIndex) {
+            return super.getColumnClass(columnIndex);
+        }
+
+        @Override
+        public int getRowCount() {
+            numberOfRows = highscores.size();
+            return numberOfRows;
+        }
+
+        public String getColumnName(int columnIndex) {
+
+            return columns[columnIndex];
+
+        }
+
+        @Override
+        public Object getValueAt(int rowIndex, int columnIndex) {
+            switch (columnIndex) {
+
+                case 0:
+                    return highscores.get(rowIndex).getGame().getGameId();
+                case 1:
+                    return highscores.get(rowIndex).getScore() ;
+                case 2:
+                    return highscores.get(rowIndex).getOpponent().getId();
+
+            }
+
+            return null;
+        }
+
+        public Score getSelectedScore(int row)
+        {
+            return highscores.get(row);
+        }
+    }
+
     private class DeleteGameActionListener implements ActionListener
     {
         @Override
         public void actionPerformed(ActionEvent e)
         {
-            if(e.getSource() == screen.getDeleteGame().getBtnDeleteGame())
-            {
-                System.out.println(api.getGames(currentUser.getId()));
-                //deleteGame();
+            if(e.getSource() == screen.getDeleteGame().getBtnDeleteGame()) {
+                deleteGame();
             }
             if(e.getSource() == screen.getDeleteGame().getBtnBack())
             {
@@ -326,14 +421,57 @@ public class Start
         }
     }
 
+    public String deleteGame()
+    {
+        int gameID = screen.getDeleteGame().getGameID();
+
+        api.deleteGame(gameID);
+
+        return "";
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//Se bort fra det her---------------------------------------------------------------------------------
     /*public String deleteGame()
+    {
+        int gameID = screen.getDeleteGame().getGameID();
+
+        return api.deleteGame(gameID);
+
+    }
+
+    public String deleteGame()
     {
         int gameID = screen.getDeleteGame().getGameID();
 
         Game game = new Game();
         game.setGameId(gameID);
 
-        for (Game g : api.getGames(currentUser.getId()))
+        for (Game g : api.getGamesByUserID(currentUser.getId()))
         {
             if (g.getGameId() == screen.getDeleteGame().getGameID())
             {

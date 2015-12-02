@@ -42,12 +42,11 @@ public class Highscores extends JPanel
         lblHighscores.setBounds(113, 62, 202, 44);
         add(lblHighscores);
 
-        scrollPane = new JScrollPane();
-        scrollPane.setBounds(18, 118, 382, 226);
-        add(scrollPane);
 
         table = new JTable();
-        scrollPane.setColumnHeaderView(table);
+        scrollPane = new JScrollPane(table);
+        scrollPane.setBounds(18, 118, 382, 226);
+        add(scrollPane);
 
         btnBack = new JButton("Back");
         btnBack.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
@@ -58,6 +57,11 @@ public class Highscores extends JPanel
     public JButton getBtnBack()
     {
         return btnBack;
+    }
+
+    public JTable getTable()
+    {
+        return table;
     }
 
 

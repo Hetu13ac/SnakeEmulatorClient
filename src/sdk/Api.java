@@ -81,9 +81,38 @@ public class Api {
         return openGames;
     }
 
-    //-------------------------------------------------------------------------------------------
+    //--------------------------------------------------------------------------------------------------------------
 
-    public ArrayList<Game> getGames(int userID)
+    public String deleteGame(int gameID)
+    {
+        String jsonData = sc.delete("games/" + gameID + "/");
+
+        return sc.stringMessageParser(jsonData);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    //Se bort fra det her-------------------------------------------------------------------------------------------
+
+    /*public ArrayList<Game> getGamesByUserID(int userID)
     {
         String jsonData = sc.get("games/" + userID +"/");
 
@@ -95,9 +124,31 @@ public class Api {
 
     public String deleteGame(Game game, int gameID)
     {
-        String jsonData = sc.delete(new Gson().toJson(game), "/games/" + gameID + "/");
+        String jsonData = sc.delete(new Gson().toJson(game), "game/" + gameID + "/");
 
         return sc.stringMessageParser(jsonData);
     }
+
+    //-------------------------------------------------------------------------------------------
+
+    /*public ArrayList<Game> getGamesByGameID(int gameID)
+    {
+        String jsonData = sc.get("games/" + gameID +"/");
+
+        ArrayList<Game> Games = new Gson().fromJson(jsonData, new TypeToken<ArrayList<Game>>() {
+        }.getType());
+
+        return Games;
+    }*/
+
+    /*public String getGameByGameID(int gameID)
+    {
+        String jsonData = sc.get("game/" + gameID + "/");
+
+        return sc.stringMessageParser(jsonData);
+    }*/
+
+
+
 
 }

@@ -20,6 +20,7 @@ public class Screen extends JFrame
     public static final String MENU = "menu123";
     public static final String CREATEGAME = "creategame123";
     public static final String JOINGAME = "joingame123";
+    public static final String SHOWRESULT = "showresult123";
     public static final String HIGHSCORES = "highscore123";
     public static final String DELETEGAME = "deletegame123";
 
@@ -28,6 +29,7 @@ public class Screen extends JFrame
     public Menu menu;
     public CreateGame createGame;
     public JoinGame joinGame;
+    public ShowResult showResult;
     public Highscores highscores;
     public DeleteGame deleteGame;
 
@@ -62,6 +64,9 @@ public class Screen extends JFrame
 
         joinGame = new JoinGame();
         contentPane.add(joinGame, JOINGAME);
+
+        showResult = new ShowResult();
+        contentPane.add(showResult, SHOWRESULT);
 
         highscores = new Highscores();
         contentPane.add(highscores, HIGHSCORES);
@@ -100,6 +105,11 @@ public class Screen extends JFrame
     public JoinGame getJoinGame()
     {
         return joinGame;
+    }
+
+    public ShowResult getShowResult()
+    {
+        return showResult;
     }
 
     public Highscores getHighscores()

@@ -78,12 +78,12 @@ public class ServerConnection {
         return "";
     }
 
-    public String delete(String json, String path)
+    public String delete(String path)
     {
         Client client = Client.create();
 
         WebResource webResource = client.resource(getHostAddress() + ":" + getPort() + "/api/" + path);
-        ClientResponse response = webResource.type("application/json").delete(ClientResponse.class, json);
+        ClientResponse response = webResource.type("application/json").delete(ClientResponse.class);
 
         if (response != null)
         {
@@ -92,8 +92,6 @@ public class ServerConnection {
 
         return "";
     }
-
-
 
     public String stringMessageParser(String json)
     {
