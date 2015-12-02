@@ -26,6 +26,7 @@ public class ShowResult extends JPanel
     private JLabel lblWinnerId;
     private JButton btnGetResult;
     private JButton btnBack;
+    private JLabel lblSomethingWentWrong;
 
     private String gameID;
 
@@ -62,22 +63,22 @@ public class ShowResult extends JPanel
 
         lblGameName = new JLabel("Game Name:");
         lblGameName.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
-        lblGameName.setBounds(72, 196, 325, 22);
+        lblGameName.setBounds(92, 230, 325, 22);
         add(lblGameName);
 
         lblHostId = new JLabel("Host ID:");
         lblHostId.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
-        lblHostId.setBounds(114, 230, 283, 22);
+        lblHostId.setBounds(134, 264, 283, 22);
         add(lblHostId);
 
         lblOpponentId = new JLabel("Opponent ID: ");
         lblOpponentId.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
-        lblOpponentId.setBounds(69, 264, 325, 22);
+        lblOpponentId.setBounds(89, 298, 325, 22);
         add(lblOpponentId);
 
         lblWinnerId = new JLabel("Winner ID: ");
         lblWinnerId.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
-        lblWinnerId.setBounds(99, 298, 295, 22);
+        lblWinnerId.setBounds(119, 332, 295, 22);
         add(lblWinnerId);
 
         btnGetResult = new JButton("Get Result");
@@ -89,6 +90,13 @@ public class ShowResult extends JPanel
         btnBack.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
         btnBack.setBounds(31, 366, 84, 37);
         add(btnBack);
+
+        lblSomethingWentWrong = new JLabel("Something went wrong");
+        lblSomethingWentWrong.setForeground(Color.RED);
+        lblSomethingWentWrong.setFont(new Font("Lucida Grande", Font.PLAIN, 15));
+        lblSomethingWentWrong.setBounds(220, 203, 174, 22);
+        add(lblSomethingWentWrong);
+        lblSomethingWentWrong.setVisible(false);
 
     }
 
@@ -102,7 +110,11 @@ public class ShowResult extends JPanel
         return btnBack;
     }
 
-
+    public JLabel getLblSomethingWentWrong()
+    {
+        return lblSomethingWentWrong;
+    }
+    
     public String getGameID()
     {
         gameID = textFieldGameID.getText();
@@ -131,7 +143,5 @@ public class ShowResult extends JPanel
         btnGetResult.addActionListener(l);
         btnBack.addActionListener(l);
     }
-
-
 }
 

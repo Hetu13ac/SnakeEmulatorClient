@@ -12,6 +12,10 @@ import java.util.ArrayList;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
@@ -90,6 +94,32 @@ public class Api {
         return sc.stringMessageParser(jsonData);
     }
 
+    /*
+    @GET //"GET-request"
+    @Path("/game/{gameid}")
+    @Produces("application/json")
+    public String getGame(@PathParam("gameid") int gameid) {
+
+        Game game = Logic.getGame(gameid);
+        return new Gson().toJson(game);
+    }*/
+
+    /*public  String getGameByID(int gameID)
+    {
+        String jsonData = sc.get("game/" + gameID + "/");
+
+        return sc.stringMessageParser(jsonData);
+    }*/
+
+    public Game getGameByGameID(int gameID)
+    {
+        String jsonData = sc.get("game/" + gameID + "/");
+        Game game = new Gson().fromJson(jsonData, new TypeToken<Game>() {
+        }.getType());
+
+        return game;
+    }
+
 
 
 
@@ -131,7 +161,7 @@ public class Api {
 
     //-------------------------------------------------------------------------------------------
 
-    /*public ArrayList<Game> getGamesByGameID(int gameID)
+    public ArrayList<Game> getGamesByGameID(int gameID)
     {
         String jsonData = sc.get("games/" + gameID +"/");
 
@@ -139,7 +169,7 @@ public class Api {
         }.getType());
 
         return Games;
-    }*/
+    }
 
     /*public String getGameByGameID(int gameID)
     {

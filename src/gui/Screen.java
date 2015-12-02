@@ -45,7 +45,7 @@ public class Screen extends JFrame
         setResizable(false);
         setBounds(100, 100, 648, 445);
         contentPane = new JPanel();
-        contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+        contentPane.setBorder(new EmptyBorder(0, 0, 0, 0));
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setContentPane(contentPane);
         contentPane.setLayout(new CardLayout(0, 0));

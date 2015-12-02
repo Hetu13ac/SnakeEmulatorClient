@@ -7,11 +7,17 @@ package logic;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import com.google.gson.Gson;
 import gui.Screen;
 import sdk.*;
+import sun.audio.AudioData;
+import sun.audio.AudioPlayer;
+import sun.audio.AudioStream;
+import sun.audio.ContinuousAudioDataStream;
 
 import javax.swing.table.AbstractTableModel;
 
@@ -46,6 +52,7 @@ public class Start
 
         screen.show(screen.WELCOME);
     }
+
 
     private class WelcomeActionListener implements ActionListener
     {
@@ -317,23 +324,30 @@ public class Start
         {
             if(e.getSource() == screen.getShowResult().getBtnGetResult())
             {
-                //showResultByGameID();
+                showResultByGameID();
             }
             if(e.getSource() == screen.getShowResult().getBtnBack())
             {
                 screen.show(Screen.MENU);
+                screen.getShowResult().resetInfo();
             }
         }
     }
 
-    /*public String showResultByGameID()
+    public String showResultByGameID()
     {
+        if(!screen.getShowResult().getGameID().equals("")) {
+            int gameID = Integer.parseInt(screen.getShowResult().getGameID());
 
-        String fromJsonToGson = api.getGameByGameID(screen.getShowResult().getGameID());
-        System.out.print(fromJsonToGson);
+            Game game = api.getGameByGameID(gameID);
 
-        return fromJsonToGson;
-    }*/
+            screen.getShowResult().seeResultFromGame(game.getName(), game.getHost().getId(), game.getOpponent().getId(), game.getWinner().getId());
+        }
+        else
+            System.out.println("Lav en tekstbesked med fejlbesked");
+
+        return "";
+    }
 
 
     private class HighscoresActionListener implements ActionListener
@@ -446,60 +460,6 @@ public class Start
 
         return message;
     }
-
-
-
-//Game was deleted
-    // Failed. Game was not deleted
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//Se bort fra det her---------------------------------------------------------------------------------
-    /*public String deleteGame()
-    {
-        int gameID = screen.getDeleteGame().getGameID();
-
-        return api.deleteGame(gameID);
-
-    }
-
-    public String deleteGame()
-    {
-        int gameID = screen.getDeleteGame().getGameID();
-
-        Game game = new Game();
-        game.setGameId(gameID);
-
-        for (Game g : api.getGamesByUserID(currentUser.getId()))
-        {
-            if (g.getGameId() == screen.getDeleteGame().getGameID())
-            {
-                game.setGameId(g.getGameId());
-                game = g;
-            }
-        }
-
-        return api.deleteGame(game, game.getGameId());
-    }*/
 
 }
 
