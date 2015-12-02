@@ -359,7 +359,7 @@ public class Start
         }
     }
 
-    public class HighscoreTableModel extends AbstractTableModel
+    /*public class HighscoreTableModel extends AbstractTableModel
     {
         private static final long serialVersionUID = 1L;
 
@@ -415,7 +415,7 @@ public class Start
         {
             return highscores.get(row);
         }
-    }
+    }*/
 
     private class DeleteGameActionListener implements ActionListener
     {
