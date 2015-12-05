@@ -9,7 +9,6 @@ import java.awt.event.ActionListener;
 
 import java.util.ArrayList;
 
-import com.google.gson.Gson;
 import gui.Screen;
 import sdk.*;
 
@@ -152,7 +151,7 @@ public class Start
             user.setPassword(password);
             user.setEmail(email);
             user.setType(type);
-            
+
             String message = api.createUser(user);
 
             if(message.equals("User was created"))
@@ -196,12 +195,7 @@ public class Start
             }
             if(e.getSource() == screen.getMenu().getBtnHighscores())
             {
-                ArrayList<Score> scores = api.getHighscores();
-                HighscoreTableModel tableModel = new HighscoreTableModel(scores);
-                screen.show(Screen.HIGHSCORES);
-                screen.getHighscores().getTable().setModel(tableModel);
-
-                sc.get("scores");
+                inTable();
                 screen.show(Screen.HIGHSCORES);
             }
             if(e.getSource() == screen.getMenu().getBtnDeleteGame())
@@ -376,6 +370,12 @@ public class Start
         }
     }
 
+    public void inTable()
+    {
+        ArrayList<Score> scores = api.getHighscores();
+        HighscoreTableModel tableModel = new HighscoreTableModel(scores);
+        screen.getHighscores().getTable().setModel(tableModel);
+    }
 
     private class DeleteGameActionListener implements ActionListener
     {
