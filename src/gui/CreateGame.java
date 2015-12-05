@@ -153,6 +153,7 @@ public class CreateGame extends JPanel
         lblMessage.setText("Game was created. Game ID: "+ gameID);
         lblMessage.setForeground(Color.BLUE);
         lblMessage.setBounds(107, 346, 281, 22);
+        lblMessage.setVisible(true);
     }
 
     /**

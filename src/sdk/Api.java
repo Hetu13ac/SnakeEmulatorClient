@@ -28,6 +28,13 @@ public class Api
         sc = new ServerConnection();
     }
 
+    public String login(User user)
+    {
+        String jsonData = sc.post(new Gson().toJson(user), "login/");
+
+        return sc.stringMessageParser(jsonData);
+    }
+
     public ArrayList<User> getUsers() {
         String jsonData = sc.get("users/");
 

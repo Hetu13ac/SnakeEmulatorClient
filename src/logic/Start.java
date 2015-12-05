@@ -73,13 +73,12 @@ public class Start
 
         if (!username.equals("") && !password.equals(""))
         {
-            currentUser.setPassword(password);
             currentUser.setUsername(username);
+            currentUser.setPassword(password);
 
-            String json = new Gson().toJson(currentUser);
 
-            String message = sc.stringMessageParser(sc.post(json, "login/"));
-            System.out.println(message);
+            String message = api.login(currentUser);
+            //System.out.println(message);
 
             if (message.equals("Login successful"))
             {
@@ -254,7 +253,7 @@ public class Start
 
             String messageFromCreateApi = api.createGame(game);
 
-            for (Game g : api.getOpenGames() )
+            for (Game g : api.getOpenGames())
             {
                 if(g.getName().equals(screen.getCreateGame().getGameName()))
                 {

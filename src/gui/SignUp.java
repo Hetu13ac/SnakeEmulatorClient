@@ -225,6 +225,7 @@ public class SignUp extends JPanel
         lblMessage.setText("Sign up was Successful. Click \"Back\" to login");
         lblMessage.setForeground(Color.BLUE);
         lblMessage.setBounds(16, 333, 325, 22);
+        lblMessage.setVisible(true);
     }
 
     /**

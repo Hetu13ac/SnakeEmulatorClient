@@ -19,8 +19,6 @@ import javax.swing.JButton;
 
 public class Welcome extends JPanel
 {
-    private JPanel contentPane;
-    private JLabel lblNewLabel;
     private JLabel lblWelcome;
     private JLabel lblUsername;
     private JLabel lblPassword;
