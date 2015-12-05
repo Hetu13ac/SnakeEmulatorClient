@@ -35,6 +35,13 @@ public class Api
         return sc.stringMessageParser(jsonData);
     }
 
+    public String createUser(User user)
+    {
+        String jsonData = sc.post(new Gson().toJson(user), "users/");
+
+        return sc.stringMessageParser(jsonData);
+    }
+
     public ArrayList<User> getUsers() {
         String jsonData = sc.get("users/");
 

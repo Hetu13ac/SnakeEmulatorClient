@@ -152,18 +152,15 @@ public class Start
             user.setPassword(password);
             user.setEmail(email);
             user.setType(type);
+            
+            String message = api.createUser(user);
 
-            String json = new Gson().toJson(user);
-
-            String message = sc.stringMessageParser(sc.post(json, "users/"));
-            System.out.println(message);
-
-            if (message.equals("User was created"))
+            if(message.equals("User was created"))
             {
                 screen.getSignUp().successfulSignUp();
                 return true;
             }
-            else if (message.equals("Username or email already exists"))
+            else if(message.equals("Username or email already exists"))
             {
                 screen.getSignUp().alreadyExist();
             }
