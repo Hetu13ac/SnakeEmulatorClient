@@ -289,6 +289,7 @@ public class Start
     }
 
 
+
     public String joinGame()
     {
         if(!screen.getJoinGame().getGameName().equals("") && !screen.getJoinGame().getGameControls().equals(""))
@@ -351,6 +352,7 @@ public class Start
 
             screen.getShowWinner().seeResultFromGame(game.getName(), game.getHost().getId(), game.getOpponent().getId(), game.getWinner().getId());
             screen.getShowWinner().getErrorMessage().setVisible(false);
+
         }
         else
             screen.getShowWinner().somethingWentWrong();
