@@ -2,6 +2,7 @@ package sdk;
 
 /**
  * Created by HenrikTuyen on 30/11/15.
+ * This class is exactly the same as the User.class from the server
  */
 import java.sql.Date;
 import java.util.Scanner;
@@ -18,35 +19,63 @@ public class User {
     private String status;
     private String email;
     private int type;
+
     public User () {}
 
     //creating get and set method for all the variables, so they can be used by other classes
 
-
+    /**
+     * This method gets id of User
+     * @return id
+     */
     public int getId() {
         return id;
     }
 
+    /**
+     * This method is setting id for an object of User
+     * @param id ID for a User object
+     */
     public void setId(int id) {
         this.id = id;
     }
 
+    /**
+     *This method gets first name of User
+     * @return firstName
+     */
     public String getFirstName() {
         return firstName;
     }
 
+    /**
+     * This method is setting first name for an object of User
+     * @param firstName First name for a User object
+     */
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
 
+    /**
+     * This method gets last name of User
+     * @return lastName
+     */
     public String getLastName() {
         return lastName;
     }
 
+    /**
+     * This method is setting last name for an object of User
+     * @param lastName Fast name
+     */
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
 
+    /**
+     * This method gets username of User
+     * @return
+     */
     public String getUsername() {
         return username;
     }

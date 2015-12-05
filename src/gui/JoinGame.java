@@ -29,7 +29,7 @@ public class JoinGame extends JPanel
 
 
     /**
-     * Create the panel.
+     * Create the panel for JoinGame.
      */
     public JoinGame()
     {
@@ -91,28 +91,49 @@ public class JoinGame extends JPanel
         add(lblMessage);
     }
 
+    /**
+     * This method gets btnJoinGame
+     * @return btnJoinGame
+     */
     public JButton getBtnJoinGame()
     {
         return btnJoinGame;
     }
 
+    /**
+     * This method gets btnBack
+     * @return btnBack
+     */
     public JButton getBtnBack()
     {
         return btnBack;
     }
 
+    /**
+     * This method converts textFieldGameName into a String
+     * @return gameName
+     */
     public String getGameName()
     {
         gameName = textFieldGameName.getText();
         return gameName;
     }
 
+    /**
+     * This method converts textFieldGameControls into a String
+     * @return gameControls
+     */
     public String getGameControls()
     {
         gameControls = textFieldGameControls.getText();
         return gameControls;
     }
 
+    /**
+     * This method is clearing all the textFields in the panel
+     * also setting visible for lblMessage to false.
+     * lblMessage will be setVisible true when something occurs like deleted game or errors.
+     */
     public void clearTextFields()
     {
         textFieldGameName.setText("");
@@ -120,6 +141,10 @@ public class JoinGame extends JPanel
         lblMessage.setVisible(false);
     }
 
+    /**
+     * This method is setting the text in lblMessage into a success message and will be shown when game is joined
+     * @param gameID The game ID for the game that just has been joined
+     */
     public void gameJoined(int gameID)
     {
         lblMessage.setText("Game was joined. Game ID: " + gameID);
@@ -128,6 +153,9 @@ public class JoinGame extends JPanel
         lblMessage.setVisible(true);
     }
 
+    /**
+     * This method is setting the text in lblMessage into a error message and will be shown when something went wrong
+     */
     public void somethingWentWrong()
     {
         lblMessage.setText("Something went wrong");
@@ -136,6 +164,10 @@ public class JoinGame extends JPanel
         lblMessage.setVisible(true);
     }
 
+    /**
+     * This method add ActionListeners for this panel
+     * @param l Object of ActionListener
+     */
     public void addActionListener(ActionListener l)
     {
         btnJoinGame.addActionListener(l);

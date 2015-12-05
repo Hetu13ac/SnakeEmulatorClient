@@ -23,7 +23,7 @@ public class Highscores extends JPanel
     private JButton btnBack;
 
     /**
-     * Create the panel.
+     * Create the panel for Highscores.
      */
     public Highscores()
     {
@@ -53,17 +53,28 @@ public class Highscores extends JPanel
         add(btnBack);
     }
 
+    /**
+     * This method gets btnBack
+     * @return btnBack
+     */
     public JButton getBtnBack()
     {
         return btnBack;
     }
 
+    /**
+     * This method gets table
+     * @return table
+     */
     public JTable getTable()
     {
         return table;
     }
 
-
+    /**
+     * This method add ActionListeners to the panel
+     * @param l Object of ActionListener
+     */
     public void addActionListener(ActionListener l)
     {
         btnBack.addActionListener(l);

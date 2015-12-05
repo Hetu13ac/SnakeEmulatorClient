@@ -13,8 +13,6 @@ import com.google.gson.Gson;
 import gui.Screen;
 import sdk.*;
 
-import javax.swing.table.AbstractTableModel;
-
 public class Start
 {
     private Screen screen;
@@ -34,13 +32,14 @@ public class Start
         api = new Api();
     }
 
-    public void run(){
+    public void run()
+    {
         screen.welcome.addActionListener(new WelcomeActionListener());
         screen.signUp.addActionListener(new SignUpActionListener());
         screen.menu.addActionListener(new MenuActionListener());
         screen.createGame.addActionListener(new CreateGameActionListener());
         screen.joinGame.addActionListener(new JoinGameActionListener());
-        screen.showResult.addActionListener(new ShowResultActionListener());
+        screen.showWinner.addActionListener(new ShowResultActionListener());
         screen.highscores.addActionListener(new HighscoresActionListener());
         screen.deleteGame.addActionListener(new DeleteGameActionListener());
 
@@ -65,6 +64,7 @@ public class Start
             }
         }
     }
+
 
     public boolean userAuth()
     {
@@ -110,10 +110,12 @@ public class Start
         return false;
     }
 
+
     public void showInfo()
     {
         screen.getMenu().information(currentUser.getUsername(), currentUser.getId());
     }
+
 
     private class SignUpActionListener implements ActionListener
     {
@@ -131,6 +133,7 @@ public class Start
             }
         }
     }
+
 
     public boolean createUser()
     {
@@ -176,6 +179,8 @@ public class Start
         return false;
     }
 
+
+
     private class MenuActionListener implements ActionListener
     {
         @Override
@@ -189,9 +194,9 @@ public class Start
             {
                 screen.show(Screen.JOINGAME);
             }
-            if(e.getSource() == screen.getMenu().getBtnShowResult())
+            if(e.getSource() == screen.getMenu().getBtnShowWinner())
             {
-                screen.show(Screen.SHOWRESULT);
+                screen.show(Screen.SHOWWINNER);
             }
             if(e.getSource() == screen.getMenu().getBtnHighscores())
             {
@@ -215,6 +220,7 @@ public class Start
         }
     }
 
+
     private class CreateGameActionListener implements ActionListener
     {
         @Override
@@ -232,6 +238,7 @@ public class Start
         }
     }
 
+
     public String createGame()
     {
         if(!screen.getCreateGame().getGameName().equals("") && !screen.getCreateGame().getGameControls().equals(""))
@@ -245,7 +252,7 @@ public class Start
             game.setHost(host);
             game.setMapSize(15);
 
-            String messageFromCreateApi =api.createGame(game);
+            String messageFromCreateApi = api.createGame(game);
 
             for (Game g : api.getOpenGames() )
             {
@@ -264,6 +271,7 @@ public class Start
         return "";
     }
 
+
     private class JoinGameActionListener implements ActionListener
     {
         @Override
@@ -280,6 +288,7 @@ public class Start
             }
         }
     }
+
 
     public String joinGame()
     {
@@ -312,37 +321,47 @@ public class Start
         return "";
     }
 
+
     private class ShowResultActionListener implements ActionListener
     {
         @Override
         public void actionPerformed(ActionEvent e)
         {
-            if(e.getSource() == screen.getShowResult().getBtnGetResult())
+            if(e.getSource() == screen.getShowWinner().getBtnGetResult())
             {
                 showResultByGameID();
             }
-            if(e.getSource() == screen.getShowResult().getBtnBack())
+            if(e.getSource() == screen.getShowWinner().getBtnBack())
             {
                 screen.show(Screen.MENU);
-                screen.getShowResult().resetInfo();
-                screen.getShowResult().getLblSomethingWentWrong().setVisible(false);
+                screen.getShowWinner().resetInfo();
+                screen.getShowWinner().getErrorMessage().setVisible(false);
             }
         }
     }
 
+
     public String showResultByGameID()
     {
-        if(!screen.getShowResult().getGameID().equals("")) {
-            int gameID = Integer.parseInt(screen.getShowResult().getGameID());
+        try
+        {
+        if(!screen.getShowWinner().getGameID().equals("")) {
+            int gameID = Integer.parseInt(screen.getShowWinner().getGameID());
 
             Game game = api.getGameByGameID(gameID);
 
-            screen.getShowResult().seeResultFromGame(game.getName(), game.getHost().getId(), game.getOpponent().getId(), game.getWinner().getId());
-            screen.getShowResult().getLblSomethingWentWrong().setVisible(false);
+            screen.getShowWinner().seeResultFromGame(game.getName(), game.getHost().getId(), game.getOpponent().getId(), game.getWinner().getId());
+            screen.getShowWinner().getErrorMessage().setVisible(false);
         }
         else
-            screen.getShowResult().getLblSomethingWentWrong().setVisible(true);
+            screen.getShowWinner().somethingWentWrong();
 
+
+        }
+        catch (Exception e1)
+        {
+            screen.getShowWinner().wrongGameID();
+        }
         return "";
     }
 
@@ -359,63 +378,6 @@ public class Start
         }
     }
 
-    /*public class HighscoreTableModel extends AbstractTableModel
-    {
-        private static final long serialVersionUID = 1L;
-
-        private ArrayList<Score> highscores;
-        private String[] columns = {"Game ID", "Score", "Username"};
-        private int numberOfRows;
-
-        public HighscoreTableModel(ArrayList<Score> highscores)
-        {
-            this.highscores = highscores;
-            fireTableStructureChanged();
-        }
-
-        @Override
-        public int getColumnCount() {
-            return columns.length;
-        }
-
-        @Override
-        public Class<?> getColumnClass(int columnIndex) {
-            return super.getColumnClass(columnIndex);
-        }
-
-        @Override
-        public int getRowCount() {
-            numberOfRows = highscores.size();
-            return numberOfRows;
-        }
-
-        public String getColumnName(int columnIndex) {
-
-            return columns[columnIndex];
-
-        }
-
-        @Override
-        public Object getValueAt(int rowIndex, int columnIndex) {
-            switch (columnIndex) {
-
-                case 0:
-                    return highscores.get(rowIndex).getGame().getWinner().getUsername();
-                case 1:
-                    return highscores.get(rowIndex).getScore();
-                case 2:
-                    return highscores.get(rowIndex).getGame().getGameId();
-
-            }
-
-            return null;
-        }
-
-        public Score getSelectedScore(int row)
-        {
-            return highscores.get(row);
-        }
-    }*/
 
     private class DeleteGameActionListener implements ActionListener
     {
@@ -459,4 +421,3 @@ public class Start
     }
 
 }
-

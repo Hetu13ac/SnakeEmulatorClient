@@ -17,7 +17,7 @@ public class Menu extends JPanel
     private JLabel lblMenu;
     private JButton btnCreateGame;
     private JButton btnJoinGame;
-    private JButton btnShowResult;
+    private JButton btnShowWinner;
     private JButton btnHighscores;
     private JButton btnDeleteGame;
     private JButton btnLogOff;
@@ -25,7 +25,7 @@ public class Menu extends JPanel
     private JLabel lblUserID;
 
     /**
-     * Create the panel.
+     * Create the panel for Menu.
      */
 
     public Menu()
@@ -80,55 +80,88 @@ public class Menu extends JPanel
         lblUserID.setBounds(354, 66, 196, 28);
         add(lblUserID);
 
-        btnShowResult = new JButton("Show Result");
-        btnShowResult.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
-        btnShowResult.setBounds(53, 178, 196, 37);
-        add(btnShowResult);
+        btnShowWinner = new JButton("Show Winner");
+        btnShowWinner.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
+        btnShowWinner.setBounds(53, 178, 196, 37);
+        add(btnShowWinner);
 
 
     }
 
+    /**
+     * This method gets btnCreateGame
+     * @return btnCreateGame
+     */
     public JButton getBtnCreateGame()
     {
         return btnCreateGame;
     }
 
+    /**
+     * This method gets btnJoinGame
+     * @return btnJoinGame
+     */
     public JButton getBtnJoinGame()
     {
         return btnJoinGame;
     }
 
-    public JButton getBtnShowResult()
+    /**
+     * This method gets btnShowWinner
+     * @return btnShowWinner
+     */
+    public JButton getBtnShowWinner()
     {
-        return btnShowResult;
+        return btnShowWinner;
     }
 
+    /**
+     * This method gets btnHighscores
+     * @return btnHighscores
+     */
     public JButton getBtnHighscores()
     {
         return btnHighscores;
     }
 
+    /**
+     * This method gets btnDeleteGame
+     * @return btnDeleteGame
+     */
     public JButton getBtnDeleteGame()
     {
         return btnDeleteGame;
     }
 
+    /**
+     * This method gets btnLogOff
+     * @return btnLogOff
+     */
     public JButton getBtnLogOff()
     {
         return btnLogOff;
     }
 
+    /**
+     * This method show the user's username and userID in the Menu JPanel
+     * @param username Username of the current user.
+     * @param userID UserID of the current user.
+     */
     public void information(String username, int userID)
     {
         lblUsername.setText("You are logged in as: " + username);
         lblUserID.setText("Your User ID: " + userID);
     }
 
+    /**
+     * This method add ActionListeners for this panel
+     * @param l Object of ActionListener
+     */
     public void addActionListener(ActionListener l)
     {
         btnCreateGame.addActionListener(l);
         btnJoinGame.addActionListener(l);
-        btnShowResult.addActionListener(l);
+        btnShowWinner.addActionListener(l);
         btnHighscores.addActionListener(l);
         btnDeleteGame.addActionListener(l);
         btnLogOff.addActionListener(l);

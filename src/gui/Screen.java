@@ -4,14 +4,10 @@ package gui;
  * Created by HenrikTuyen on 30/11/15.
  */
 
-
 import java.awt.*;
 
-import javax.swing.ImageIcon;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-import javax.swing.JLabel;
 
 public class Screen extends JFrame
 {
@@ -20,7 +16,7 @@ public class Screen extends JFrame
     public static final String MENU = "menu123";
     public static final String CREATEGAME = "creategame123";
     public static final String JOINGAME = "joingame123";
-    public static final String SHOWRESULT = "showresult123";
+    public static final String SHOWWINNER = "showwinner123";
     public static final String HIGHSCORES = "highscore123";
     public static final String DELETEGAME = "deletegame123";
 
@@ -29,7 +25,7 @@ public class Screen extends JFrame
     public Menu menu;
     public CreateGame createGame;
     public JoinGame joinGame;
-    public ShowResult showResult;
+    public ShowWinner showWinner;
     public Highscores highscores;
     public DeleteGame deleteGame;
 
@@ -38,8 +34,8 @@ public class Screen extends JFrame
 
     /**
      * Create the frame.
+     * CardLayout is used for this JFrame. contentPane work as a card deck and every JPanel represent a "card".
      */
-
     public Screen()
     {
         setResizable(false);
@@ -65,8 +61,8 @@ public class Screen extends JFrame
         joinGame = new JoinGame();
         contentPane.add(joinGame, JOINGAME);
 
-        showResult = new ShowResult();
-        contentPane.add(showResult, SHOWRESULT);
+        showWinner = new ShowWinner();
+        contentPane.add(showWinner, SHOWWINNER);
 
         highscores = new Highscores();
         contentPane.add(highscores, HIGHSCORES);
@@ -77,48 +73,85 @@ public class Screen extends JFrame
         c = (CardLayout) getContentPane().getLayout();
     }
 
+    /**
+     * This method is used for showing a specific card/JPanel from the card deck/contentPane.
+     * @param card The specific card/JPanel that will shown
+     */
     public void show(String card)
     {
         c.show(this.getContentPane(), card);
     }
 
+    /**
+     * This method gets Welcome (JPanel)
+     * @return welcome
+     */
     public Welcome getWelcome()
     {
         return welcome;
     }
 
+    /**
+     * This method gets SignUp (JPanel)
+     * @return signUp
+     */
     public SignUp getSignUp()
     {
         return signUp;
     }
 
+    /**
+     * This method gets Menu (JPanel)
+     * @return menu
+     */
     public Menu getMenu()
     {
         return menu;
     }
 
+    /**
+     * This method gets CreateGame (JPanel)
+     * @return createGame
+     */
     public CreateGame getCreateGame()
     {
         return createGame;
     }
 
+    /**
+     * This method gets JoinGame (JPanel)
+     * @return joinGame
+     */
     public JoinGame getJoinGame()
     {
         return joinGame;
     }
 
-    public ShowResult getShowResult()
+    /**
+     * This method gets ShowWinner (JPanel)
+     * @return showWinner
+     */
+    public ShowWinner getShowWinner()
     {
-        return showResult;
+        return showWinner;
     }
 
+    /**
+     * This method gets Highscores (JPanel)
+     * @return highscores
+     */
     public Highscores getHighscores()
     {
         return highscores;
     }
 
+    /**
+     * This method gets DeleteGame (JPanel)
+     * @return deleteGame
+     */
     public DeleteGame getDeleteGame()
     {
         return deleteGame;
     }
+
 }

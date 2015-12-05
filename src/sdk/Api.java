@@ -19,10 +19,6 @@ import javax.ws.rs.Produces;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
-/**
- * Created by HenrikTuyen on 19/11/15.
- */
-
 public class Api
 {
     private ServerConnection sc;
@@ -89,11 +85,6 @@ public class Api
 
         return sc.stringMessageParser(jsonData);
     }
-
-
-
-
-//----------------------------------------------------------------------------------------------------
 
     public ArrayList<Score> getHighscores()
     {

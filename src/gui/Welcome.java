@@ -35,7 +35,7 @@ public class Welcome extends JPanel
     private String password;
 
     /**
-     * Create the panel.
+     * Create the panel for Welcome.
      */
     public Welcome()
     {
@@ -95,39 +95,67 @@ public class Welcome extends JPanel
         add(lblYouHaveEntered);
     }
 
+    /**
+     * This method gets btnLogin
+     * @return btnLogin
+     */
     public JButton getBtnLogin()
     {
         return btnLogin;
     }
 
+    /**
+     * This method gets btnSignUp
+     * @return btnSignUp
+     */
     public JButton getBtnSignUp()
     {
         return btnSignUp;
     }
 
+    /**
+     * This method gets Username
+     * Converting textFieldUsername into a String
+     * @return username
+     */
     public String getUsername()
     {
         username = textFieldUsername.getText();
         return username;
     }
 
+    /**
+     * This method gets Password
+     * Converting textFieldPassword into a String
+     * @return password
+     */
     public String getPassword()
     {
         password = passwordField.getText();
         return password;
     }
 
+    /**
+     * This method is clearing the textFields in the panel
+     */
     public void clearTextFields()
     {
         textFieldUsername.setText("");
         passwordField.setText("");
     }
 
+    /**
+     * This method gets lblYouHaveEntered
+     * @return lblYouHaveEntered
+     */
     public JLabel getYouHaveEntered()
     {
         return lblYouHaveEntered;
     }
 
+    /**
+     * This method is used when user has entered something wrong.
+     */
     public void enteredWrong()
     {
         lblYouHaveEntered.setText("You have entered wrong username or password");
@@ -135,6 +163,9 @@ public class Welcome extends JPanel
         lblYouHaveEntered.setBounds(57, 296, 343, 24);
     }
 
+    /**
+     * This method is used when something went wrong
+     */
     public void somethingWentWrong()
     {
         lblYouHaveEntered.setText("Please enter username and password");
@@ -142,6 +173,10 @@ public class Welcome extends JPanel
         lblYouHaveEntered.setBounds(125, 296, 275, 24);
     }
 
+    /**
+     * This method add ActionListeners to the panel
+     * @param l Object of ActionListener
+     */
     public void addActionListener(ActionListener l)
     {
         btnLogin.addActionListener(l);

@@ -13,7 +13,7 @@ public class HighscoreTableModel extends AbstractTableModel
     private static final long serialVersionUID = 1L;
 
     private ArrayList<Score> highscores;
-    private String[] columns = {"Game ID", "Score", "Username"};
+    private String[] columns = {"Username", "Score", "Game ID"};
     private int numberOfRows;
 
     public HighscoreTableModel(ArrayList<Score> highscores)

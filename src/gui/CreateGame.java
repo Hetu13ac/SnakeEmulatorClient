@@ -13,8 +13,10 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 
+
 public class CreateGame extends JPanel
 {
+
     private JLabel lblCreateGame;
     private JLabel lblGameName;
     private JTextField textFieldGameName;
@@ -28,13 +30,14 @@ public class CreateGame extends JPanel
     private String gameControls;
 
     /**
-     * Create the panel.
+     * Create the panel for createGame.
      */
     public CreateGame()
     {
         setBackground(Color.YELLOW);
         setSize(648, 445);
         setLayout(null);
+
 
         JLabel snakeIcon = new JLabel("");
         snakeIcon.setBounds(400, 142, 242, 261);
@@ -90,28 +93,50 @@ public class CreateGame extends JPanel
         add(lblMessage);
     }
 
+    /**
+     * This method gets btnCreateGame
+     * @return btnCreateGame
+     */
     public JButton getBtnCreateGame()
     {
         return btnCreateGame;
     }
 
+    /**
+     * This method gets btnBack
+     * @return btnBack
+     */
     public JButton getBtnBack()
     {
         return btnBack;
     }
 
+    /**
+     * This method is converting textFieldGameName into a String
+     * @return gameName
+     */
     public String getGameName()
     {
         gameName = textFieldGameName.getText();
         return gameName;
     }
 
+    /**
+     * This method is converting textFieldGameControls into a String
+     * @return gameControls
+     */
     public String getGameControls()
     {
         gameControls = textFieldGameControls.getText();
         return gameControls;
     }
 
+
+    /**
+     * This method is clearing all the textFields in CreateGame
+     * Setting visible for lblMessage to false.
+     * The lblMessage will be setVisible true when something occurs like create game or errors.
+     */
     public void clearTextFields()
     {
         textFieldGameName.setText("");
@@ -119,6 +144,10 @@ public class CreateGame extends JPanel
         lblMessage.setVisible(false);
     }
 
+    /**
+     * This method is setting the text in lblMessage into a success message and will be shown when game is created
+     * @param gameID The game ID for the game that just has been created
+     */
     public void successMessage(int gameID)
     {
         lblMessage.setText("Game was created. Game ID: "+ gameID);
@@ -126,6 +155,9 @@ public class CreateGame extends JPanel
         lblMessage.setBounds(107, 346, 281, 22);
     }
 
+    /**
+     * This method is setting the text in lblMessage into a error message and will be shown when something went wrong
+     */
     public void somethingWentWrong()
     {
         lblMessage.setText("Something went wrong");
@@ -134,6 +166,10 @@ public class CreateGame extends JPanel
         lblMessage.setVisible(true);
     }
 
+    /**
+     * This method add ActionListeners for this Panel
+     * @param l Object of ActionListener
+     */
     public void addActionListener(ActionListener l)
     {
         btnCreateGame.addActionListener(l);

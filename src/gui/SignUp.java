@@ -134,46 +134,79 @@ public class SignUp extends JPanel
         add(lblMessage);
     }
 
+    /**
+     * This method get btnSignUp
+     * @return btnSignUp
+     */
     public JButton getBtnSignUp()
     {
         return btnSignUp;
     }
 
+    /**
+     * This method get btnBack
+     * @return btnBack
+     */
     public JButton getBtnBack()
     {
         return btnBack;
     }
 
+    /**
+     * This method convert textFieldFirstName into a String
+     * @return firstName
+     */
     public String getFirstName()
     {
         firstName = textFieldFirstName.getText();
         return firstName;
     }
 
+    /**
+     * This method convert textFieldLastName into a String
+     * @return
+     */
     public String getLastName()
     {
         lastName = textFieldLastName.getText();
         return lastName;
     }
 
+    /**
+     * This method convert textFieldUsername into a String
+     * @return username
+     */
     public String getUsername()
     {
         username = textFieldUsername.getText();
         return username;
     }
 
+    /**
+     * This method convert textFieldPassword into a String
+     * @return
+     */
     public String getPassword()
     {
         password = textFieldPassword.getText();
         return password;
     }
 
+    /**
+     * This method convert textFieldEmail into a String
+     * @return email
+     */
     public String getEmail()
     {
         email = textFieldEmail.getText();
         return email;
     }
 
+    /**
+     * This method is clearing all the textFields in the panel
+     * Setting visible for lblMessage to false.
+     * The lblMessage will be setVisible true when something occurs like create game or errors.
+     */
     public void clearTextFields()
     {
         textFieldFirstName.setText("");
@@ -184,6 +217,9 @@ public class SignUp extends JPanel
         lblMessage.setVisible(false);
     }
 
+    /**
+     * This method will be used when a user has succesfully signed up
+     */
     public void successfulSignUp()
     {
         lblMessage.setText("Sign up was Successful. Click \"Back\" to login");
@@ -191,6 +227,9 @@ public class SignUp extends JPanel
         lblMessage.setBounds(16, 333, 325, 22);
     }
 
+    /**
+     * This method will be used when a user already exist by username or email
+     */
     public void alreadyExist()
     {
         lblMessage.setText("Username or E-mail already exist");
@@ -199,6 +238,9 @@ public class SignUp extends JPanel
         lblMessage.setVisible(true);
     }
 
+    /**
+     * This method will be used when error occurs.
+     */
     public void somethingWentWrong()
     {
         lblMessage.setText("Something went wrong");
@@ -207,6 +249,9 @@ public class SignUp extends JPanel
         lblMessage.setVisible(true);
     }
 
+    /**
+     * This method will be used if there is empty textFields when btnSignUp is clicked and shows an error message
+     */
     public void missingInformation()
     {
         lblMessage.setText("Please fill in your informations");
@@ -215,6 +260,10 @@ public class SignUp extends JPanel
         lblMessage.setVisible(true);
     }
 
+    /**
+     * This method add ActionListeners to the panel
+     * @param l Object of ActionListener
+     */
     public void addActionListener(ActionListener l)
     {
         btnSignUp.addActionListener(l);

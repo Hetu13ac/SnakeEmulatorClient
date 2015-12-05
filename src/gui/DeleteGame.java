@@ -4,7 +4,6 @@ package gui;
  * Created by HenrikTuyen on 30/11/15.
  */
 
-
 import java.awt.*;
 import java.awt.event.ActionListener;
 
@@ -14,7 +13,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 
-public class DeleteGame extends JPanel {
+public class DeleteGame extends JPanel
+{
     private JLabel lblDeleteGame;
     private JLabel lblEnterGameId;
     private JTextField textFieldGameID;
@@ -25,7 +25,7 @@ public class DeleteGame extends JPanel {
     private int gameID;
 
     /**
-     * Create the panel.
+     * Create the panel for DeleteGame.
      */
     public DeleteGame()
     {
@@ -71,21 +71,28 @@ public class DeleteGame extends JPanel {
 
     }
 
+    /**
+     * This method gets btnDeleteGame
+     * @return btnDeleteGame
+     */
     public JButton getBtnDeleteGame()
     {
         return btnDeleteGame;
     }
 
+    /**
+     * This method gets btnBack
+     * @return btnDeleteGame
+     */
     public JButton getBtnBack()
     {
         return btnBack;
     }
 
-    public JTextField getTextFieldGameID()
-    {
-        return textFieldGameID;
-    }
-
+    /**
+     * This method convert textFieldGameID into a String and thereafter into an int
+     * @return gameID
+     */
     public int getGameID()
     {
         String g = textFieldGameID.getText();
@@ -93,6 +100,10 @@ public class DeleteGame extends JPanel {
         return gameID;
     }
 
+    /**
+     * This method is setting the text in lblMessage into a success message and will be shown when game is deleted
+     * @param gameID The game ID for the game that just has been deleted
+     */
     public void gameWasDeleted(int gameID)
     {
         lblMessage.setText("Game was deleted. (Game ID: " + gameID + ")");
@@ -101,6 +112,9 @@ public class DeleteGame extends JPanel {
         lblMessage.setVisible(true);
     }
 
+    /**
+     * This method is setting the text in lblMessage into an error message and will be shown when error occurs
+     */
     public void failed()
     {
         lblMessage.setText("Failed. Game was not deleted");
@@ -109,6 +123,9 @@ public class DeleteGame extends JPanel {
         lblMessage.setVisible(true);
     }
 
+    /**
+     * This method is setting the text in lblMessage into an error message and will be shown when something went wrong
+     */
     public void somethingWentWrong()
     {
         lblMessage.setText("Something went wrong. Please try again.");
@@ -117,12 +134,21 @@ public class DeleteGame extends JPanel {
         lblMessage.setVisible(true);
     }
 
+    /**
+     * This method is clearing the textFieldGameID
+     * also setting visible for lblMessage to false.
+     * lblMessage will be setVisible true when something occurs like deleted game or errors.
+     */
     public void clearText()
     {
         textFieldGameID.setText("");
         lblMessage.setVisible(false);
     }
 
+    /**
+     * This method add ActionListeners for this panel
+     * @param l Object of ActionListener
+     */
     public void addActionListener(ActionListener l)
     {
         btnDeleteGame.addActionListener(l);
