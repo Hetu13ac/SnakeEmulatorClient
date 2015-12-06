@@ -113,7 +113,7 @@ public class Welcome extends JPanel
 
     /**
      * This method gets Username
-     * Converting textFieldUsername into a String
+     * Converting textFieldUsername into a String and gets username
      * @return username
      */
     public String getUsername()
@@ -124,7 +124,7 @@ public class Welcome extends JPanel
 
     /**
      * This method gets Password
-     * Converting textFieldPassword into a String
+     * Converting textFieldPassword into a String and gets password
      * @return password
      */
     public String getPassword()

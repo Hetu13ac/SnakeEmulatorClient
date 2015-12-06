@@ -153,7 +153,7 @@ public class SignUp extends JPanel
     }
 
     /**
-     * This method convert textFieldFirstName into a String
+     * This method convert textFieldFirstName into a String and gets first name
      * @return firstName
      */
     public String getFirstName()
@@ -163,7 +163,7 @@ public class SignUp extends JPanel
     }
 
     /**
-     * This method convert textFieldLastName into a String
+     * This method convert textFieldLastName into a String and gets last name
      * @return
      */
     public String getLastName()
@@ -173,7 +173,7 @@ public class SignUp extends JPanel
     }
 
     /**
-     * This method convert textFieldUsername into a String
+     * This method convert textFieldUsername into a String and gets username
      * @return username
      */
     public String getUsername()
@@ -183,7 +183,7 @@ public class SignUp extends JPanel
     }
 
     /**
-     * This method convert textFieldPassword into a String
+     * This method convert textFieldPassword into a String and gets password
      * @return
      */
     public String getPassword()
@@ -193,7 +193,7 @@ public class SignUp extends JPanel
     }
 
     /**
-     * This method convert textFieldEmail into a String
+     * This method convert textFieldEmail into a String and gets email
      * @return email
      */
     public String getEmail()

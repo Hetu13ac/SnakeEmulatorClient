@@ -110,7 +110,7 @@ public class JoinGame extends JPanel
     }
 
     /**
-     * This method converts textFieldGameName into a String
+     * This method converts textFieldGameName into a String and gets game name
      * @return gameName
      */
     public String getGameName()
@@ -120,7 +120,7 @@ public class JoinGame extends JPanel
     }
 
     /**
-     * This method converts textFieldGameControls into a String
+     * This method converts textFieldGameControls into a String and gets game controls
      * @return gameControls
      */
     public String getGameControls()

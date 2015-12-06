@@ -26,7 +26,7 @@ public class User {
     //creating get and set method for all the variables, so they can be used by other classes
 
     /**
-     * This method gets id of User
+     * This method gets id from User
      * @return id
      */
     public int getId() {
@@ -42,7 +42,7 @@ public class User {
     }
 
     /**
-     *This method gets first name of User
+     *This method gets first name from User
      * @return firstName
      */
     public String getFirstName() {
@@ -58,7 +58,7 @@ public class User {
     }
 
     /**
-     * This method gets last name of User
+     * This method gets last name from User
      * @return lastName
      */
     public String getLastName() {
@@ -74,7 +74,7 @@ public class User {
     }
 
     /**
-     * This method gets username of User
+     * This method gets username from User
      * @return username
      */
     public String getUsername() {
@@ -90,7 +90,7 @@ public class User {
     }
 
     /**
-     * This method gets password of User
+     * This method gets password from User
      * @return password
      */
     public String getPassword() {
@@ -106,7 +106,7 @@ public class User {
     }
 
     /**
-     * This method gets the registration of User object
+     * This method gets the registration date from User object
      * @return created
      */
     public Date getCreated() {
@@ -122,7 +122,7 @@ public class User {
     }
 
     /**
-     * This method gets the status of User object
+     * This method gets the status from User object
      * @return status
      */
     public String getStatus() {
@@ -138,7 +138,7 @@ public class User {
     }
 
     /**
-     * This method gets email of User object
+     * This method gets email from User object
      * @return email
      */
     public String getEmail() {
@@ -154,7 +154,7 @@ public class User {
     }
 
     /**
-     * This method gets user type of User object
+     * This method gets user type from User object
      * @return type
      */
     public int getType() {

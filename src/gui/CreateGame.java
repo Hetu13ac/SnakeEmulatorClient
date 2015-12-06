@@ -19,6 +19,7 @@ import javax.swing.JButton;
 public class CreateGame extends JPanel
 {
 
+    //Declaring variables used in this class
     private JLabel lblCreateGame;
     private JLabel lblGameName;
     private JTextField textFieldGameName;
@@ -115,7 +116,7 @@ public class CreateGame extends JPanel
     }
 
     /**
-     * This method is converting textFieldGameName into a String
+     * This method is converting textFieldGameName into a String and gets Game name
      * @return gameName
      */
     public String getGameName()
@@ -125,7 +126,7 @@ public class CreateGame extends JPanel
     }
 
     /**
-     * This method is converting textFieldGameControls into a String
+     * This method is converting textFieldGameControls into a String and gets Game Controls
      * @return gameControls
      */
     public String getGameControls()

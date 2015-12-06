@@ -2,6 +2,8 @@ package sdk;
 
 /**
  * Created by HenrikTuyen on 30/11/15.
+ * This class is exactly the same as the Game.class from the server
+ * This class represent an object of Game and contains the variables that Game object must have
  */
 
 import java.sql.Date;
@@ -9,7 +11,8 @@ import java.sql.Date;
 import java.sql.Date;
 
 
-public class Game {
+public class Game
+{
     //Creating the variables needed for the game
     private int gameId;
     private Gamer winner;
@@ -20,58 +23,119 @@ public class Game {
     private Date created;
     private int mapSize;
 
-    public Game(){}
+    public Game()
+    {
 
-    public Date getCreated() {
+    }
+
+    /**
+     * This method gets the date of creation from game
+     * @return created
+     */
+    public Date getCreated()
+    {
         return created;
     }
 
-    public void setCreated(Date created) {
+    /**
+     * This method is setting the creation date for a game
+     * @param created The creation date of a game
+     */
+    public void setCreated(Date created)
+    {
         this.created = created;
     }
 
-    public int getMapSize() {
+    /**
+     * This method gets the map size from a game
+     * @return mapSize
+     */
+    public int getMapSize()
+    {
         return mapSize;
     }
 
+    /**
+     * This method is setting the map size of a game
+     * @param mapSize Sets map size of a game
+     */
     public void setMapSize(int mapSize) {
         this.mapSize = mapSize;
     }
 
+    /**
+     * This method gets the name from a game
+     * @return name
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * This method is setting the name of a game
+     * @param name The game name
+     */
     public void setName(String name) {
         this.name = name;
     }
 
-    //Creating get/set method for all the variables, so they can be used by other classes
+    /**
+     * This method gets Game ID from a game
+     * @return gameId
+     */
     public int getGameId(){
         return gameId;
     }
 
+    /**
+     * This method is setting Game ID of a game
+     * @param gameId Sets game id
+     */
     public void setGameId(int gameId){
         this.gameId = gameId;
     }
 
+    /**
+     * This method gets an object of Gamer as host
+     * @return host
+     */
     public Gamer getHost(){
         return host;
     }
 
-    public void setHost(Gamer host){
+    /**
+     * This method is setting host of a game
+     * @param host Sets the host of game
+     */
+    public void setHost(Gamer host)
+    {
         this.host = host;
     }
 
-    public Gamer getOpponent(){
+    /**
+     * This method gets an object of Gamer as opponent
+     * @return opponent
+     */
+    public Gamer getOpponent()
+    {
         return opponent;
     }
 
-    public void setOpponent(Gamer opponent){
+    /**
+     * This method is setting the opponent of a game from an object of Gamer
+     * @param opponent
+     */
+    public void setOpponent(Gamer opponent)
+    {
         this.opponent = opponent;
     }
 
-    public String getStatus(){
+    /**
+     * 
+     * @return
+     */
+    public String getStatus()
+    {
         return status;
     }
 

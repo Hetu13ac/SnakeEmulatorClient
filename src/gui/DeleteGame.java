@@ -90,7 +90,7 @@ public class DeleteGame extends JPanel
     }
 
     /**
-     * This method convert textFieldGameID into a String and thereafter into an int
+     * This method convert textFieldGameID into a String and thereafter into an int. Gets the Game ID
      * @return gameID
      */
     public int getGameID()
