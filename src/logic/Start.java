@@ -14,14 +14,16 @@ import sdk.*;
 
 public class Start
 {
+    //Declaring the variables used in this class
     private Screen screen;
     private User currentUser;
     private ServerConnection sc;
     private Api api;
 
-
+    //Constructor of the class
     public Start()
     {
+        //Initializing the variables that are used in this class
         screen = new Screen();
         screen.setVisible(true);
 
@@ -31,6 +33,10 @@ public class Start
         api = new Api();
     }
 
+    /**
+     * This method is used to start the application. It is injecting ActionListeners from the GUI.
+     * The application starts with opening the JPanel Welcome
+     */
     public void run()
     {
         screen.welcome.addActionListener(new WelcomeActionListener());
@@ -46,8 +52,17 @@ public class Start
     }
 
 
+    /**
+     * Inner class that are used to handle the ActionListeners from screen.Welcome
+     */
     private class WelcomeActionListener implements ActionListener
     {
+        /**
+         * This method handles when buttons are pressed
+         * when login button are pressed it runs the userAuth() method which verify the user
+         * when sign up button are pressed it goes to the SignUp JPanel
+         * @param e An object of ActionEvent
+         */
         @Override
         public void actionPerformed(ActionEvent e)
         {
@@ -65,6 +80,12 @@ public class Start
     }
 
 
+    /**
+     * The method is verifying user to login to the system.
+     * To verify an user we are calling the method login() from the Api.class and post an object of User
+     * If User can be verified the user are being set to be currentUser
+     * @return true if login successful and false if something incorrect was entered
+     */
     public boolean userAuth()
     {
         String username = screen.getWelcome().getUsername();
@@ -109,14 +130,27 @@ public class Start
     }
 
 
+    /**
+     * This method is used to show username and userID when user has logged into the system, and
+     * The method are getting its variables from currentUser
+     */
     public void showInfo()
     {
         screen.getMenu().information(currentUser.getUsername(), currentUser.getId());
     }
 
 
+    /**
+     * Inner class that are used to handle the ActionListeners from screen.SignUp
+     */
     private class SignUpActionListener implements ActionListener
     {
+        /**
+         * This method handles when buttons are pressed
+         * when SignUp button are pressed it runs the createUser()
+         * when back button are pressed it goes to the Welcome JPanel
+         * @param e An object of ActionEvent
+         */
         @Override
         public void actionPerformed(ActionEvent e)
         {
@@ -132,7 +166,12 @@ public class Start
         }
     }
 
-
+    /**
+     * The method is used to create a user to the system.
+     * To create a user we are calling the method createUser() from the Api.class and post an object of User
+     * The is setting variables for a User object and post it to the server to create.
+     * @return true if creation was successful and false if something incorrect was entered
+     */
     public boolean createUser()
     {
         String firstName = screen.getSignUp().getFirstName();
@@ -175,9 +214,21 @@ public class Start
     }
 
 
-
+    /**
+     * Inner class that are used to handle the ActionListeners from screen.Menu
+     */
     private class MenuActionListener implements ActionListener
     {
+        /**
+         * This method handles when buttons are pressed
+         * when create game button are pressed it shows the screen.CreateGame
+         * when join game button are pressed it shows the screen.JoinGame
+         * when show winner button are pressed it shows the screen.ShowWinner
+         * when Highscores button are pressed it shows the screen.Highscores and also calls the inTable() method
+         * when delete game button are pressed it shows the screen.DeleteGame
+         * when log out button are pressed it shows the screen.Welcome and you have to login to the system again
+         * @param e An object of ActionEvent
+         */
         @Override
         public void actionPerformed(ActionEvent e)
         {
