@@ -2,6 +2,10 @@ package logic;
 
 /**
  * Created by HenrikTuyen on 30/11/15.
+ * This class handles the logic of this application. It is the connection between GUI and SDK (Frontend to backend)
+ * Inputs will be handled by logic and then send to SDK, and then the SDK will return events back to logic and
+ * then back as output to the user (GUI)
+ * To every JPanel class from the gui belongs a inner class
  */
 
 import java.awt.event.ActionEvent;
@@ -181,7 +185,8 @@ public class Start
         String email = screen.getSignUp().getEmail();
         int type = 1;
 
-        if(!firstName.equals("") && !lastName.equals("") && !username.equals("") && !password.equals("") && !email.equals(""))
+        if(!firstName.equals("") && !lastName.equals("")
+                && !username.equals("") && !password.equals("") && !email.equals(""))
         {
             User user = new User();
             user.setFirstName(firstName);
@@ -262,8 +267,17 @@ public class Start
     }
 
 
+    /**
+     * Inner class that are used to handle the ActionListeners from screen.CreateGame
+     */
     private class CreateGameActionListener implements ActionListener
     {
+        /**
+         * This method handles when buttons are pressed
+         * when Create game button are pressed it runs the createGame()
+         * when back button are pressed it goes to the Menu JPanel and clearing the textFields at the same time
+         * @param e An object of ActionEvent
+         */
         @Override
         public void actionPerformed(ActionEvent e)
         {
@@ -280,14 +294,26 @@ public class Start
     }
 
 
+
+    /**
+     * The method is used to create a game to the system
+     * Runs when button Create Game are pressed on the screen.CreateGame
+     * To create a game we are calling the method createGame() from the Api.class and post an object of Game
+     * The method is setting variables by entering game name and controls for a Game object
+     * and post it to the server to create.
+     * When an object of Game has been created, the status of the game will be open.
+     * @return ""
+     */
     public String createGame()
     {
         if(!screen.getCreateGame().getGameName().equals("") && !screen.getCreateGame().getGameControls().equals(""))
         {
+            //Creating an object of Gamer as host and setting hostID og host Controls
             Gamer host = new Gamer();
             host.setId(currentUser.getId());
             host.setControls(screen.getCreateGame().getGameControls());
 
+            //Creating an object of Game and setting game name, host. The mapsize is set to 15.
             Game game = new Game();
             game.setName(screen.getCreateGame().getGameName());
             game.setHost(host);
@@ -295,6 +321,7 @@ public class Start
 
             String messageFromCreateApi = api.createGame(game);
 
+            //A for loop of openGames is thereafter made and we set the game that the user just have created
             for (Game g : api.getOpenGames())
             {
                 if(g.getName().equals(screen.getCreateGame().getGameName()))
@@ -302,6 +329,7 @@ public class Start
                     game.setGameId(g.getGameId());
                 }
             }
+            //When a game has been created it shows a message with the game ID to the user
             screen.getCreateGame().successMessage(game.getGameId());
 
             return messageFromCreateApi;
@@ -312,9 +340,17 @@ public class Start
         return "";
     }
 
-
+    /**
+     * Inner class that are used to handle the ActionListeners from screen.JoinGame
+     */
     private class JoinGameActionListener implements ActionListener
     {
+        /**
+         * This method handles when buttons are pressed
+         * when join game button are pressed it runs the joinGame()
+         * when back button are pressed it goes to the Menu JPanel and clearing the textFields at the same time
+         * @param e An object of ActionEvent
+         */
         @Override
         public void actionPerformed(ActionEvent e)
         {
@@ -330,12 +366,25 @@ public class Start
         }
     }
 
-
-
+    /**
+     * The method is used to join an open game in the system
+     * Runs when button join game are pressed on the screen.JoinGame
+     * To join a game we are calling the methods joinGame() & startGame() from the Api.class
+     * and put variables on object of Game
+     * The method is setting variables by entering game name and controls for a Game object
+     * and post it to the server to join.
+     * First the method runs the joinGame() from Api.class and by that it is setting the opponent ID
+     * and changing the game status from open to pending.
+     * Thereafter it runs the startGame() method from Api.Class and put setting the opponent controls
+     * and changing the game status from pending to finished.
+     * The winner of the game can be identified by go to screen.ShowWinner
+     * @return ""
+     */
     public String joinGame()
     {
         if(!screen.getJoinGame().getGameName().equals("") && !screen.getJoinGame().getGameControls().equals(""))
         {
+            //Creating an object of Gamer as opponent and setting opponent ID og Controls
             Gamer opponent = new Gamer();
             Game game = new Game();
             game.setOpponent(opponent);
@@ -343,6 +392,7 @@ public class Start
             opponent.setControls(screen.getJoinGame().getGameControls());
             opponent.setId(currentUser.getId());
 
+            //By making a for-loop we are looking for open games that equals to what opponent have entered
             for (Game g : api.getOpenGames())
             {
                 if (g.getName().equals(screen.getJoinGame().getGameName()))
@@ -350,6 +400,8 @@ public class Start
 
             }
 
+            //When the open game is set, we put the variables on an existing object of game
+            //and thereafter the game has been joined and started
             String messageFromJoin = api.joinGame(game);
             api.startGame(game);
 
@@ -363,9 +415,18 @@ public class Start
         return "";
     }
 
-
+    /**
+     * Inner class that are used to handle the ActionListeners from screen.ShowWinner
+     */
     private class ShowResultActionListener implements ActionListener
     {
+        /**
+         * This method handles when buttons are pressed
+         * when get winner button are pressed it runs the showResultByGameID()
+         * when back button are pressed it goes to the Menu JPanel and clearing the textFields
+         * and labels at the same time
+         * @param e An object of ActionEvent
+         */
         @Override
         public void actionPerformed(ActionEvent e)
         {
@@ -382,24 +443,33 @@ public class Start
         }
     }
 
-
+    /**
+     * The method is used to show a game by gameID from the system
+     * Runs when button get winner are pressed on the screen.ShowWinner
+     * To show winner of the game we are calling the method getGameByID() from the Api.class
+     * and get variables from a specific object of Game
+     * If game ID is identified the variables of the object will be shown on the screen.
+     * @return ""
+     */
     public String showResultByGameID()
     {
         try
         {
-        if(!screen.getShowWinner().getGameID().equals("")) {
-            int gameID = Integer.parseInt(screen.getShowWinner().getGameID());
+            if(!screen.getShowWinner().getGameID().equals(""))
+            {
+                //We are parsing the input from user into an int for game ID
+                int gameID = Integer.parseInt(screen.getShowWinner().getGameID());
 
-            Game game = api.getGameByGameID(gameID);
+                //Declaring and initializing object of Game
+                Game game = api.getGameByGameID(gameID);
 
-            screen.getShowWinner().seeResultFromGame(game.getName(), game.getHost().getId(), game.getOpponent().getId(), game.getWinner().getId());
-            screen.getShowWinner().getErrorMessage().setVisible(false);
-
-        }
-        else
-            screen.getShowWinner().somethingWentWrong();
-
-
+                //Method from screen.ShowWinner are called and variables from game object are set into the method
+                screen.getShowWinner().seeResultFromGame(game.getName(),
+                        game.getHost().getId(), game.getOpponent().getId(), game.getWinner().getId());
+                screen.getShowWinner().getErrorMessage().setVisible(false);
+            }
+            else
+                screen.getShowWinner().somethingWentWrong();
         }
         catch (Exception e1)
         {
@@ -409,8 +479,16 @@ public class Start
     }
 
 
+    /**
+     * Inner class that are used to handle the ActionListeners from screen.Highscores
+     */
     private class HighscoresActionListener implements ActionListener
     {
+        /**
+         * This method handles when buttons are pressed
+         * when back button are pressed it goes to the Menu JPanel
+         * @param e An object of ActionEvent
+         */
         @Override
         public void actionPerformed(ActionEvent e)
         {
@@ -421,15 +499,32 @@ public class Start
         }
     }
 
+    /**
+     * The method is used to get what we need in our JTable
+     */
     public void inTable()
     {
+        //Declaring & initializing the scores to the ArrayList we made in Api.class getHighscores
         ArrayList<Score> scores = api.getHighscores();
+
+        //Declaring & initializing an object of HighscoreTableModel
         HighscoreTableModel tableModel = new HighscoreTableModel(scores);
+
+        //Putting the scores into the table model
         screen.getHighscores().getTable().setModel(tableModel);
     }
 
+    /**
+     * Inner class that are used to handle the ActionListeners from screen.DeleteGame
+     */
     private class DeleteGameActionListener implements ActionListener
     {
+        /**
+         * This method handles when buttons are pressed
+         * when delete game button are pressed it runs the deleteGame()
+         * when back button are pressed it goes to the Menu JPanel and clearing the textFields at the same time
+         * @param e An object of ActionEvent
+         */
         @Override
         public void actionPerformed(ActionEvent e)
         {
@@ -451,6 +546,15 @@ public class Start
         }
     }
 
+    /**
+     * The method is used to "soft" delete a game from the system
+     * Runs when button Delete Game are pressed on the screen.DeleteGame
+     * To delete a game we are calling the method deleteGame() from the Api.class and delete an object of Game
+     * The method is setting variables by entering game name and controls for a Game object
+     * On the server it will change status to "deleted"
+     * When an object of Game has been deleted, the status of the game will be deleted.
+     * @return ""
+     */
     public String deleteGame()
     {
         int gameID = screen.getDeleteGame().getGameID();
@@ -466,7 +570,7 @@ public class Start
             screen.getDeleteGame().failed();
         }
 
-        return message;
+        return "";
     }
 
 }
