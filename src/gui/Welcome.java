@@ -2,6 +2,8 @@ package gui;
 
 /**
  * Created by HenrikTuyen on 30/11/15.
+ * This class represents the Welcome GUI for this application. Inputs and outputs for Welcome comes from this Panel.
+ * This Panel allows users to login to the system
  */
 
 
@@ -19,6 +21,7 @@ import javax.swing.JButton;
 
 public class Welcome extends JPanel
 {
+    //Declaring variables used in this class
     private JLabel lblWelcome;
     private JLabel lblUsername;
     private JLabel lblPassword;
@@ -40,6 +43,8 @@ public class Welcome extends JPanel
         setBackground(Color.YELLOW);
         setSize(648, 445);
         setLayout(null);
+
+        //Creating labels, buttons, textFields and adding attributes
 
         JLabel snakeIcon = new JLabel("");
         snakeIcon.setBounds(400, 142, 242, 261);

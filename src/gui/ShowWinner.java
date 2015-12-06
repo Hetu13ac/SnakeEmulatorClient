@@ -2,6 +2,8 @@ package gui;
 
 /**
  * Created by HenrikTuyen on 01/12/15.
+ * This class represents the Show Winner GUI for this application. Inputs and outputs for Show Winner comes from this Panel.
+ * Extends JPanel
  */
 
 import java.awt.*;
@@ -17,6 +19,7 @@ import javax.swing.JButton;
 
 public class ShowWinner extends JPanel
 {
+    //Declaring variables used in this class
     private JLabel lblShowResult;
     private JLabel lblEnterGameId;
     private JTextField textFieldGameID;
@@ -38,6 +41,8 @@ public class ShowWinner extends JPanel
         setBackground(Color.YELLOW);
         setSize(648, 445);
         setLayout(null);
+
+        //Creating labels, textFields, buttons and adding attributes
 
         JLabel snakeIcon = new JLabel("");
         snakeIcon.setBounds(400, 142, 242, 261);

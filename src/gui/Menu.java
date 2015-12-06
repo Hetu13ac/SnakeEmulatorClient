@@ -2,6 +2,8 @@ package gui;
 
 /**
  * Created by HenrikTuyen on 30/11/15.
+ * This class represents the Menu GUI for this application. Inputs and outputs for Menu comes from this Panel.
+ * Extends JPanel
  */
 
 import java.awt.*;
@@ -14,6 +16,7 @@ import javax.swing.JButton;
 
 public class Menu extends JPanel
 {
+    //Declaring variables used in this class
     private JLabel lblMenu;
     private JButton btnCreateGame;
     private JButton btnJoinGame;
@@ -33,6 +36,8 @@ public class Menu extends JPanel
         setBackground(Color.YELLOW);
         setSize(648, 445);
         setLayout(null);
+
+        //Creating labels and buttons and adding attributes
 
         JLabel snakeIcon = new JLabel("");
         snakeIcon.setBounds(400, 142, 242, 261);

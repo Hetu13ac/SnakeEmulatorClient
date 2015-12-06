@@ -2,6 +2,8 @@ package gui;
 
 /**
  * Created by HenrikTuyen on 30/11/15.
+ * This class represents the Screen GUI for this application and work as a frame for all the JPanels
+ * Extends JFrame
  */
 
 import java.awt.*;

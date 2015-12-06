@@ -2,6 +2,8 @@ package gui;
 
 /**
  * Created by HenrikTuyen on 30/11/15.
+ * This class represents the Highscores GUI for this application. Inputs and outputs for highscores comes from this Panel.
+ * Extends JPanel
  */
 
 
@@ -17,6 +19,7 @@ import javax.swing.JTable;
 
 public class Highscores extends JPanel
 {
+    //Declaring variables used in this class
     private JLabel lblHighscores;
     private JScrollPane scrollPane;
     private JTable table;
@@ -30,6 +33,8 @@ public class Highscores extends JPanel
         setBackground(Color.YELLOW);
         setSize(648, 445);
         setLayout(null);
+
+        //Creating labels, Jtable, buttons and adding attributes
 
         JLabel snakeIcon = new JLabel("");
         snakeIcon.setBounds(400, 142, 242, 261);

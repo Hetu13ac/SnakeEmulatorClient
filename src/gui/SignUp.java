@@ -2,6 +2,9 @@ package gui;
 
 /**
  * Created by HenrikTuyen on 30/11/15.
+ * This class represents the Sign up GUI for this application. Inputs and outputs for Sign up comes from this Panel.
+ * This panels allows users that are not signed up for system to sign up.
+ * Extends JPanel
  */
 
 
@@ -47,6 +50,8 @@ public class SignUp extends JPanel
         setBackground(Color.YELLOW);
         setSize(648, 445);
         setLayout(null);
+
+        //Creating labels, buttons, textFields and adding attributes
 
         JLabel snakeIcon = new JLabel("");
         snakeIcon.setBounds(400, 142, 242, 261);

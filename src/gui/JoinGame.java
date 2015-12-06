@@ -2,6 +2,8 @@ package gui;
 
 /**
  * Created by HenrikTuyen on 30/11/15.
+ * This class represents the Join Game GUI for this application. Inputs and outputs for join game comes from this Panel.
+ * Extends JPanel
  */
 
 import java.awt.*;
@@ -15,6 +17,7 @@ import javax.swing.JButton;
 
 public class JoinGame extends JPanel
 {
+    //Declaring the variables used in this class
     private JLabel lblJoinGame;
     private JLabel lblGameName;
     private JTextField textFieldGameName;
@@ -36,6 +39,8 @@ public class JoinGame extends JPanel
         setBackground(Color.YELLOW);
         setSize(648, 445);
         setLayout(null);
+
+        //Creating labels, textFields, buttons and adding attributes
 
         JLabel snakeIcon = new JLabel("");
         snakeIcon.setBounds(400, 142, 242, 261);

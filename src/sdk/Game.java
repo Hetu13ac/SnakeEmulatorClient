@@ -131,22 +131,34 @@ public class Game
     }
 
     /**
-     * 
-     * @return
+     * This method gets game status: open, pending, finished or deleted.
+     * @return status
      */
     public String getStatus()
     {
         return status;
     }
 
+    /**
+     * This method is setting status for a game
+     * @param status Sets the status of a game: open, pending, finished or deleted
+     */
     public void setStatus(String status){
         this.status = status;
     }
 
+    /**
+     * This method gets an object of Gamer as Winner
+     * @return winner
+     */
     public Gamer getWinner() {
         return winner;
     }
 
+    /**
+     * This method is setting the winner of a game
+     * @param winner Setting the winner with an object of Gamer
+     */
     public void setWinner(Gamer winner) {
         this.winner = winner;
     }
