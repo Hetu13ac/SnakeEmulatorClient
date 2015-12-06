@@ -2,6 +2,8 @@ package gui;
 
 /**
  * Created by HenrikTuyen on 30/11/15.
+ * This class represents the Create Game GUI for this application. Inputs and outputs for create game comes from this Panel.
+ * Extends JPanel.
  */
 
 import java.awt.*;
@@ -38,6 +40,7 @@ public class CreateGame extends JPanel
         setSize(648, 445);
         setLayout(null);
 
+        //Creating labels, textFields, buttons and adding attributes
 
         JLabel snakeIcon = new JLabel("");
         snakeIcon.setBounds(400, 142, 242, 261);

@@ -2,6 +2,7 @@ package sdk;
 
 /**
  * Created by HenrikTuyen on 30/11/15.
+ * This class is exactly the same as the Gamer.class from the server
  */
 
 public class Gamer extends User {
